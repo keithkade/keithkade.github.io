@@ -1,0 +1,10 @@
+{
+  "name": "kadekeith.me",
+  "version": "1.0.0",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-app": "^3.1.2",
+    "grunt": "^1.1.0",
+    "grunt-contrib-imagemin": "^3.1.0"
+  }
+}

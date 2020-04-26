@@ -1,0 +1,54 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background: white !important;
+}
+
+#app {
+  padding: 1rem;
+}
+
+.character {
+  position: relative;
+  color: white;
+}
+
+.character__info {
+  margin-bottom: 2rem;
+}
+
+.character__img {
+  position: absolute;
+  bottom: 0;
+  margin-left: 2rem;
+  height: 12rem;
+}
+
+.character__stats,
+.character__info {
+  padding: 1rem;
+  width: 30rem;
+  display: inline-block;
+  background-color: #3163c0;
+  border: 3px solid #e8e0c2;
+  position: relative;
+  outline: 2px solid #58523b;
+}
+
+.attr__name {
+  width: 2rem;
+  display: inline-block;
+  color: #cbc575;
+}
+
+.attr__input {
+  width: 2rem;
+}
+
+.attr__avg {
+  width: 5rem;
+  display: inline-block;
+}
