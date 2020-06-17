@@ -3,7 +3,6 @@
 // npx babel --watch stuff/felevels/src --out-dir stuff/felevels/build --presets react-app/prod
 
 /* TODO
-Display growth rates
 Display actual level (w/ promote)
 Auto promote level 20
 Shorten slider if promoted
@@ -13,6 +12,7 @@ Overall styling
 Support for growths more than 100%
 Get more real data
 Character picker
+Game picker
 Make promote a toggle
 */
 
@@ -66,6 +66,15 @@ var promote = function promote(attributes) {
   });
 };
 
+var unpromote = function unpromote(attributes) {
+  return attributes.map(function (attr) {
+    return Object.assign({}, attr, {
+      avg: attr.avg - attr.promote,
+      current: attr.current - attr.promote
+    });
+  });
+};
+
 var Attribute = function Attribute(_ref) {
   var attr = _ref.attr,
       setVal = _ref.setVal;
@@ -86,6 +95,12 @@ var Attribute = function Attribute(_ref) {
       { className: 'attr__avg' },
       'Avg: ',
       attr.avg
+    ),
+    React.createElement(
+      'span',
+      { className: 'attr__growth' },
+      'Growth: ',
+      attr.growth
     )
   );
 };
@@ -111,6 +126,30 @@ var Character = function Character(_ref2) {
       _useState6 = _slicedToArray(_useState5, 2),
       lvl = _useState6[0],
       setLvl = _useState6[1];
+
+  var handleLvlChange = function handleLvlChange(oldLvl, newLvl) {
+    var diff = newLvl - oldLvl;
+    var newStats = stats;
+    for (var i = 0; i < Math.abs(diff); i++) {
+      if (newLvl > lvl) {
+        newStats = levelUp(newStats, promoted);
+      } else {
+        newStats = levelDown(newStats, promoted);
+      }
+    }
+    // 20 -> 21 promote
+    if (lvl < 21 && newLvl > 20) {
+      setPromoted(true);
+      newStats = promote(newStats);
+    }
+    // 21 -> 20 unpromote
+    if (lvl > 20 && newLvl < 21) {
+      setPromoted(false);
+      newStats = unpromote(newStats);
+    }
+    setStats(newStats);
+    setLvl(newLvl);
+  };
 
   return React.createElement(
     'div',
@@ -156,46 +195,36 @@ var Character = function Character(_ref2) {
         'button',
         {
           onClick: function onClick() {
-            setStats(levelUp(stats, promoted));
-            setLvl(lvl + 1);
-          } },
-        'Up'
-      ),
-      React.createElement(
-        'button',
-        {
-          onClick: function onClick() {
-            setStats(levelDown(stats, promoted));
-            setLvl(lvl - 1);
+            handleLvlChange(lvl, lvl - 1);
           } },
         'Down'
-      ),
-      React.createElement(
-        'button',
-        {
-          disabled: promoted,
-          onClick: function onClick() {
-            setPromoted(true);
-            setStats(promote(stats));
-          } },
-        'Promote'
       ),
       React.createElement('input', { type: 'range', min: 1, max: 39, value: lvl, className: 'slider',
         onChange: function onChange(e) {
           var newLvl = e.target.value;
-          var diff = newLvl - lvl;
-          var newStats = stats;
-          for (var i = 0; i < Math.abs(diff); i++) {
-            if (newLvl > lvl) {
-              newStats = levelUp(newStats);
-            } else {
-              newStats = levelDown(newStats);
-            }
-          }
-          setStats(newStats);
-          setLvl(newLvl);
+          handleLvlChange(lvl, newLvl);
         }
-      })
+      }),
+      React.createElement(
+        'button',
+        {
+          onClick: function onClick() {
+            handleLvlChange(lvl, lvl + 1);
+          } },
+        'Up'
+      ),
+      React.createElement('input', { type: 'checkbox',
+        checked: promoted,
+        onChange: function onChange(cb) {
+          setPromoted(cb.target.checked);
+          if (cb.target.checked) {
+            setStats(promote(stats));
+          } else {
+            setStats(unpromote(stats));
+          }
+        }
+      }),
+      'Promote'
     ),
     React.createElement('img', { className: 'character__img', src: character.img })
   );

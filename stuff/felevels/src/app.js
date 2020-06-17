@@ -3,7 +3,6 @@
 // npx babel --watch stuff/felevels/src --out-dir stuff/felevels/build --presets react-app/prod
 
 /* TODO
-Display growth rates
 Display actual level (w/ promote)
 Auto promote level 20
 Shorten slider if promoted
@@ -13,6 +12,7 @@ Overall styling
 Support for growths more than 100%
 Get more real data
 Character picker
+Game picker
 Make promote a toggle
 */
 
@@ -61,11 +61,18 @@ const promote = (attributes) => attributes.map(attr => ({
   current: attr.current + attr.promote,
 }));
 
+const unpromote = (attributes) => attributes.map(attr => ({
+  ...attr,
+  avg: attr.avg - attr.promote,
+  current: attr.current - attr.promote,
+}));
+
 const Attribute = ({ attr, setVal }) =>
   <div>
     <span className="attr__name">{attr.name}:</span>
     <input className="attr__input" type="text" value={attr.current} onChange={e => setVal(parseInt(e.target.value))} />
     <span className="attr__avg">Avg: {attr.avg}</span>
+    <span className="attr__growth">Growth: {attr.growth}</span>
   </div>
 
 const Character = ({ character }) => {
@@ -73,6 +80,30 @@ const Character = ({ character }) => {
   const [stats, setStats] = useState(initialStats);
   const [promoted, setPromoted] = useState(character.promoted);
   const [lvl, setLvl] = useState(character.startLvl);
+
+  const handleLvlChange = (oldLvl, newLvl) => {
+    const diff = newLvl - oldLvl;
+    let newStats = stats;
+    for (let i = 0; i < Math.abs(diff); i++) {
+      if (newLvl > lvl) {
+        newStats = levelUp(newStats, promoted);
+      } else {
+        newStats = levelDown(newStats, promoted);
+      }
+    }
+    // 20 -> 21 promote
+    if (lvl < 21 && newLvl > 20) {
+      setPromoted(true);
+      newStats = promote(newStats);
+    }
+    // 21 -> 20 unpromote
+    if (lvl > 20 && newLvl < 21) {
+      setPromoted(false);
+      newStats = unpromote(newStats);
+    }
+    setStats(newStats);
+    setLvl(newLvl);
+  }
 
   return (
     <div className="character">
@@ -95,42 +126,34 @@ const Character = ({ character }) => {
         )}
         <button
           onClick={() => {
-            setStats(levelUp(stats, promoted));
-            setLvl(lvl + 1);
-          }}>
-          Up
-        </button>
-        <button
-          onClick={() => {
-            setStats(levelDown(stats, promoted));
-            setLvl(lvl - 1);
+            handleLvlChange(lvl, lvl - 1);
           }}>
           Down
-        </button>
-        <button
-          disabled={promoted}
-          onClick={() => {
-            setPromoted(true);
-            setStats(promote(stats));
-          }}>
-          Promote
         </button>
         <input type="range" min={1} max={39} value={lvl} className="slider"
           onChange={(e) => {
             const newLvl = e.target.value;
-            const diff = newLvl - lvl;
-            let newStats = stats;
-            for (let i = 0; i < Math.abs(diff); i++) {
-              if (newLvl > lvl) {
-                newStats = levelUp(newStats);
-              } else {
-                newStats = levelDown(newStats);
-              }
-            }
-            setStats(newStats);
-            setLvl(newLvl);
+            handleLvlChange(lvl, newLvl);
           }}
         />
+        <button
+          onClick={() => {
+            handleLvlChange(lvl, lvl + 1);
+          }}>
+          Up
+        </button>
+        <input type="checkbox"
+          checked={promoted}
+          onChange={(cb) => {
+            setPromoted(cb.target.checked);
+            if (cb.target.checked) {
+              setStats(promote(stats));
+            } else {
+              setStats(unpromote(stats));
+            }
+          }}
+        />
+        Promote
       </div>
       <img className="character__img" src={character.img} />
     </div>

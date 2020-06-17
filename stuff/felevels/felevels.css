@@ -9,6 +9,7 @@ html, body {
 
 #app {
   padding: 1rem;
+  max-width: 800px;
 }
 
 .character {
