@@ -151,11 +151,11 @@ header {
         }
         .how-play-wrapper {
             display: block;
-            height: 36px;
-            position: relative;            
+            height: 40px;
+            position: relative;
         }
         .dl-1 {
-            background: $p4;            
+            background: $p4;
             z-index: 4;
         }
         .dl-2 {
@@ -196,7 +196,7 @@ header {
         color: white;
         .list-icon {
             border-radius: 20px;
-            width: 20px;
+            width: 24px;
             display: inline-block;
             text-align: center;
             margin: -2px 0 0 0;
@@ -209,7 +209,7 @@ header {
         float: left;
         .list-icon {
             border: 3px solid #b9e6b9;
-            color: #b9e6b9;            
+            color: #b9e6b9;
         }
     }
     .bad-points {
@@ -217,7 +217,7 @@ header {
         .list-icon {
             border: 3px solid #e56a6a;
             color: #e56a6a;
-        }        
+        }
     }
     .clear {
         clear: both;
