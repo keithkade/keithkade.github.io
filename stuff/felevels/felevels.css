@@ -1,4 +1,5 @@
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -21,6 +22,19 @@ html, body {
   margin-bottom: 2rem;
 }
 
+.character__name {
+  display: inline-block;
+}
+
+.character__lvl {
+  display: inline-block;
+  float: right
+}
+
+.character__lvl-data {
+  font-size: 2rem;
+}
+
 .character__img {
   position: absolute;
   bottom: 0;
@@ -31,7 +45,7 @@ html, body {
 .character__stats,
 .character__info {
   padding: 1rem;
-  width: 30rem;
+  width: 36rem;
   display: inline-block;
   background-color: #3163c0;
   border: 3px solid #e8e0c2;
@@ -39,17 +53,106 @@ html, body {
   outline: 2px solid #58523b;
 }
 
+.character__info .bold {
+  font-weight: bold;
+}
+
+.level_controls {
+  margin-top: 1rem;
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+.slider {
+  margin: 0 .5rem 0 .5rem;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: .2rem;
+  background: #bbbbbb;
+  outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.2rem;
+  height: 1.2rem;
+  background: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 1.2rem;
+  height: 1.2rem;
+  background: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.level_btn {
+  background-color: #e8e0c2;
+  border: 1px solid black;
+  padding: 2px 4px;
+  display: inline-block;
+  border-radius: 4px;
+  width: 2rem;
+  cursor: pointer;
+}
+
+.character__reset {
+  float: right;
+  display: inline-block;
+  cursor: pointer;
+  border: 1px solid white;
+  color: white;
+  padding: .3rem .5rem .3rem .3rem;
+  font-size: 1rem;
+  background: none;
+}
+
+.promote-container {
+  margin-top: 1rem;
+}
+
 .attr__name {
   width: 2rem;
   display: inline-block;
-  color: #cbc575;
+  color: #fffe40;
 }
 
 .attr__input {
+  margin-left: .5rem;
   width: 2rem;
+  display: inline-block;
 }
 
 .attr__avg {
-  width: 5rem;
+  margin-left: 1rem;
+  width: 4.5rem;
   display: inline-block;
+}
+
+.attr__growth {
+  margin-left: 1rem;
+  width: 4.5rem;
+  display: inline-block;
+}
+
+.attr__cap {
+  margin-left: 1rem;
+  width: 4.5rem;
+  display: inline-block;
+}
+
+.character_select_img {
+  border: 1px solid grey;
+  padding: .5rem;
+  margin: 1px;
+  height: 10rem;
+  cursor: pointer;
 }

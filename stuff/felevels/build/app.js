@@ -3,12 +3,12 @@
 // npx babel --watch stuff/felevels/src --out-dir stuff/felevels/build --presets react-app/prod
 
 /* TODO
-Display actual level (w/ promote)
-Auto promote level 20
-Shorten slider if promoted
-Shorten slider on level
 Special styling when capped
-Overall styling
+Basic Instructions
+Overall styling (Reset button)
+Fix Bugs (DEPROMOTE CAN CAUSE FLOAT ISSUE)
+Two characters
+==== AFTER POST FOR FEEDBACK ====
 Support for growths more than 100%
 Get more real data
 Character picker
@@ -21,11 +21,13 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var _React = React,
-    useState = _React.useState;
+    useState = _React.useState,
+    useEffect = _React.useEffect;
 
 
 var oswinData = {
   name: 'Oswin',
+  id: 'oswin',
   class: ['Knight', 'General'],
   promoted: false,
   img: '/img/compressed/felevels/fe7/Oswin.png',
@@ -33,11 +35,29 @@ var oswinData = {
   attributes: [{ name: 'HP', base: 28, growth: .9, cap: [60, 60], promote: 4 }, { name: 'Str', base: 13, growth: .4, cap: [20, 29], promote: 2 }, { name: 'Skl', base: 9, growth: .3, cap: [20, 27], promote: 2 }, { name: 'Spd', base: 5, growth: .3, cap: [20, 24], promote: 3 }, { name: 'Lck', base: 3, growth: .35, cap: [30, 30], promote: 2 }, { name: 'Def', base: 13, growth: .55, cap: [20, 30], promote: 3 }, { name: 'Res', base: 3, growth: .30, cap: [20, 25], promote: 1 }]
 };
 
-var round = function round(num) {
-  return Math.round(num * 100) / 100;
+var lynData = {
+  name: 'Lyn',
+  id: 'lyn',
+  class: ['Knight', 'General'],
+  promoted: false,
+  img: '/img/compressed/felevels/fe7/Lyn.png',
+  startLvl: 9,
+  attributes: [{ name: 'HP', base: 28, growth: .9, cap: [60, 60], promote: 4 }, { name: 'Str', base: 13, growth: .4, cap: [20, 29], promote: 2 }, { name: 'Skl', base: 9, growth: .3, cap: [20, 27], promote: 2 }, { name: 'Spd', base: 5, growth: .3, cap: [20, 24], promote: 3 }, { name: 'Lck', base: 3, growth: .35, cap: [30, 30], promote: 2 }, { name: 'Def', base: 13, growth: .55, cap: [20, 30], promote: 3 }, { name: 'Res', base: 3, growth: .30, cap: [20, 25], promote: 1 }]
 };
 
-var levelUp = function levelUp(attributes, promoted) {
+var characterData = {
+  oswin: oswinData,
+  lyn: lynData
+};
+
+var MAX_LVL = 39;
+var MIN_LVL = 1;
+
+var round = function round(num) {
+  return Number(num.toFixed(3));
+};
+
+var levelUpAttributes = function levelUpAttributes(attributes, promoted) {
   return attributes.map(function (attr) {
     var cap = attr.cap[promoted ? 1 : 0];
     return Object.assign({}, attr, {
@@ -47,7 +67,7 @@ var levelUp = function levelUp(attributes, promoted) {
   });
 };
 
-var levelDown = function levelDown(attributes, promoted) {
+var levelDownAttributes = function levelDownAttributes(attributes, promoted) {
   return attributes.map(function (attr) {
     var cap = attr.cap[promoted ? 1 : 0];
     return Object.assign({}, attr, {
@@ -57,19 +77,19 @@ var levelDown = function levelDown(attributes, promoted) {
   });
 };
 
-var promote = function promote(attributes) {
+var promoteStats = function promoteStats(attributes) {
   return attributes.map(function (attr) {
     return Object.assign({}, attr, {
-      avg: attr.avg + attr.promote,
+      avg: round(attr.avg + attr.promote),
       current: attr.current + attr.promote
     });
   });
 };
 
-var unpromote = function unpromote(attributes) {
+var unpromoteStats = function unpromoteStats(attributes) {
   return attributes.map(function (attr) {
     return Object.assign({}, attr, {
-      avg: attr.avg - attr.promote,
+      avg: round(attr.avg - attr.promote),
       current: attr.current - attr.promote
     });
   });
@@ -77,7 +97,8 @@ var unpromote = function unpromote(attributes) {
 
 var Attribute = function Attribute(_ref) {
   var attr = _ref.attr,
-      setVal = _ref.setVal;
+      setVal = _ref.setVal,
+      promoted = _ref.promoted;
   return React.createElement(
     'div',
     null,
@@ -93,20 +114,24 @@ var Attribute = function Attribute(_ref) {
     React.createElement(
       'span',
       { className: 'attr__avg' },
-      'Avg: ',
       attr.avg
     ),
     React.createElement(
       'span',
       { className: 'attr__growth' },
-      'Growth: ',
       attr.growth
+    ),
+    React.createElement(
+      'span',
+      { className: 'attr__cap' },
+      promoted ? attr.cap[1] : attr.cap[0]
     )
   );
 };
 
 var Character = function Character(_ref2) {
-  var character = _ref2.character;
+  var character = _ref2.character,
+      reset = _ref2.reset;
 
   var initialStats = character.attributes.map(function (attr) {
     return Object.assign({}, attr, { current: attr.base, avg: attr.base });
@@ -122,34 +147,71 @@ var Character = function Character(_ref2) {
       promoted = _useState4[0],
       setPromoted = _useState4[1];
 
-  var _useState5 = useState(character.startLvl),
+  // the level at which we chose to promote
+
+
+  var _useState5 = useState(20),
       _useState6 = _slicedToArray(_useState5, 2),
-      lvl = _useState6[0],
-      setLvl = _useState6[1];
+      lvlPromotedAt = _useState6[0],
+      setLvlPromotedAt = _useState6[1];
+
+  // unpromoted levels + promoted levels
+
+
+  var _useState7 = useState(character.startLvl),
+      _useState8 = _slicedToArray(_useState7, 2),
+      lvl = _useState8[0],
+      setLvl = _useState8[1];
+
+  // level after taking account whether or not the user is promoted
+
+
+  var _useState9 = useState(character.startLvl),
+      _useState10 = _slicedToArray(_useState9, 2),
+      displayLvl = _useState10[0],
+      setDisplayLvl = _useState10[1];
 
   var handleLvlChange = function handleLvlChange(oldLvl, newLvl) {
     var diff = newLvl - oldLvl;
     var newStats = stats;
     for (var i = 0; i < Math.abs(diff); i++) {
       if (newLvl > lvl) {
-        newStats = levelUp(newStats, promoted);
+        newStats = levelUpAttributes(newStats, promoted);
       } else {
-        newStats = levelDown(newStats, promoted);
+        newStats = levelDownAttributes(newStats, promoted);
       }
     }
-    // 20 -> 21 promote
-    if (lvl < 21 && newLvl > 20) {
+    setLvl(newLvl);
+    // 20 -> 21 promote if not already
+    if (lvl < 21 && newLvl > 20 && !promoted) {
       setPromoted(true);
-      newStats = promote(newStats);
+      setLvlPromotedAt(20);
+      newStats = promoteStats(newStats);
     }
     // 21 -> 20 unpromote
     if (lvl > 20 && newLvl < 21) {
       setPromoted(false);
-      newStats = unpromote(newStats);
+      newStats = unpromoteStats(newStats);
     }
     setStats(newStats);
-    setLvl(newLvl);
   };
+
+  // handle calculating the "display level" based on when we promoted
+  useEffect(function () {
+    if (promoted) {
+      setDisplayLvl(lvl - lvlPromotedAt + 1);
+    } else {
+      setDisplayLvl(lvl);
+    }
+  }, [lvl, promoted]);
+
+  // if the user de-promotes and the new level is invalid, set us to the lvl promoted at
+  useEffect(function () {
+    if (!promoted && lvl > 20) {
+      console.log('DEPROMOTED AT LEVEL', lvl);
+      handleLvlChange(lvl, lvlPromotedAt);
+    }
+  }, [promoted]);
 
   return React.createElement(
     'div',
@@ -158,32 +220,80 @@ var Character = function Character(_ref2) {
       'div',
       { className: 'character__info' },
       React.createElement(
-        'h3',
-        null,
+        'h1',
+        { className: 'character__name' },
         character.name
+      ),
+      React.createElement(
+        'div',
+        { className: 'character__lvl' },
+        'Current Level: ',
+        React.createElement(
+          'span',
+          { className: 'character__lvl-data' },
+          displayLvl
+        )
       ),
       React.createElement(
         'div',
         null,
         'Class: ',
-        character.class[0],
+        React.createElement(
+          'span',
+          { className: promoted ? '' : 'bold' },
+          character.class[0]
+        ),
         ' \u2192 ',
-        character.class[1]
+        React.createElement(
+          'span',
+          { className: promoted ? 'bold' : '' },
+          character.class[1]
+        )
       ),
       React.createElement(
         'div',
         null,
-        'Level: ',
-        lvl
+        'Total Levels: ',
+        lvl,
+        ' (before promotion + after promotion)'
+      ),
+      React.createElement(
+        'div',
+        null,
+        'Promoted at level: ',
+        promoted ? lvlPromotedAt : 'NA'
+      ),
+      React.createElement(
+        'button',
+        { className: 'character__reset', onClick: reset },
+        '\u2190 Back to character select'
       )
     ),
     React.createElement(
       'div',
       { className: 'character__stats' },
+      React.createElement('span', { className: 'attr__name' }),
+      React.createElement('span', { className: 'attr__input' }),
+      React.createElement(
+        'span',
+        { className: 'attr__avg' },
+        'Average for level'
+      ),
+      React.createElement(
+        'span',
+        { className: 'attr__growth' },
+        'Growth per level'
+      ),
+      React.createElement(
+        'span',
+        { className: 'attr__cap' },
+        'Stat Cap'
+      ),
       stats.map(function (attr, i) {
         return React.createElement(Attribute, {
           key: attr.name,
           attr: attr,
+          promoted: promoted,
           setVal: function setVal(val) {
             var newStats = [].concat(_toConsumableArray(stats));
             newStats[i].current = val;
@@ -192,54 +302,90 @@ var Character = function Character(_ref2) {
         });
       }),
       React.createElement(
-        'button',
-        {
-          onClick: function onClick() {
-            handleLvlChange(lvl, lvl - 1);
-          } },
-        'Down'
-      ),
-      React.createElement('input', { type: 'range', min: 1, max: 39, value: lvl, className: 'slider',
-        onChange: function onChange(e) {
-          var newLvl = e.target.value;
-          handleLvlChange(lvl, newLvl);
-        }
-      }),
-      React.createElement(
-        'button',
-        {
-          onClick: function onClick() {
-            handleLvlChange(lvl, lvl + 1);
-          } },
-        'Up'
-      ),
-      React.createElement('input', { type: 'checkbox',
-        checked: promoted,
-        onChange: function onChange(cb) {
-          setPromoted(cb.target.checked);
-          if (cb.target.checked) {
-            setStats(promote(stats));
-          } else {
-            setStats(unpromote(stats));
+        'div',
+        { className: 'level_controls' },
+        React.createElement(
+          'button',
+          {
+            className: 'level_btn',
+            disabled: lvl === MIN_LVL,
+            onClick: function onClick() {
+              handleLvlChange(lvl, lvl - 1);
+            } },
+          '-1'
+        ),
+        React.createElement('input', { style: { width: (19 + lvlPromotedAt) / 1.5 + 'rem' }, type: 'range', min: 1, max: 19 + lvlPromotedAt, value: lvl, className: 'slider',
+          onChange: function onChange(e) {
+            var newLvl = Number(e.target.value);
+            handleLvlChange(lvl, newLvl);
           }
-        }
-      }),
-      'Promote'
+        }),
+        React.createElement(
+          'button',
+          {
+            className: 'level_btn',
+            disabled: lvl === MAX_LVL,
+            onClick: function onClick() {
+              handleLvlChange(lvl, lvl + 1);
+            } },
+          '+1'
+        )
+      ),
+      React.createElement(
+        'div',
+        { className: 'promote-container' },
+        React.createElement('input', { type: 'checkbox',
+          checked: promoted,
+          onChange: function onChange(cb) {
+            setPromoted(cb.target.checked);
+            if (cb.target.checked) {
+              setStats(promoteStats(stats));
+              setLvlPromotedAt(lvl);
+            } else {
+              setStats(unpromoteStats(stats));
+              setLvlPromotedAt(20);
+            }
+          }
+        }),
+        'Promote'
+      )
     ),
     React.createElement('img', { className: 'character__img', src: character.img })
   );
 };
 
+var CharacterSelect = function CharacterSelect(_ref3) {
+  var setCharacter = _ref3.setCharacter;
+  return React.createElement(
+    'div',
+    { className: 'foooooo' },
+    React.createElement(
+      'h1',
+      null,
+      'Select a character:'
+    ),
+    React.createElement('img', { className: 'character_select_img', onClick: function onClick() {
+        return setCharacter(oswinData.id);
+      }, src: oswinData.img }),
+    React.createElement('img', { className: 'character_select_img', onClick: function onClick() {
+        return setCharacter(lynData.id);
+      }, src: lynData.img })
+  );
+};
+
 var App = function App() {
-  var _useState7 = useState(0),
-      _useState8 = _slicedToArray(_useState7, 2),
-      count = _useState8[0],
-      setCount = _useState8[1];
+  var _useState11 = useState(null),
+      _useState12 = _slicedToArray(_useState11, 2),
+      character = _useState12[0],
+      setCharacter = _useState12[1];
 
   return React.createElement(
     'div',
     null,
-    React.createElement(Character, { character: oswinData })
+    character && React.createElement(Character, { character: characterData[character], reset: function reset() {
+        return setCharacter(null);
+      } }),
+    !character && React.createElement(CharacterSelect, { setCharacter: setCharacter })
   );
 };
 
