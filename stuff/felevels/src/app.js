@@ -3,11 +3,10 @@
 // npx babel --watch stuff/felevels/src --out-dir stuff/felevels/build --presets react-app/prod
 
 /* TODO
-Special styling when capped
 Basic Instructions
-Overall styling (Reset button)
-Fix Bugs (DEPROMOTE CAN CAUSE FLOAT ISSUE)
-Two characters
+Overall styling
+Two characters (Get real Lyn info)
+Make it work-ish on mobile
 ==== AFTER POST FOR FEEDBACK ====
 Support for growths more than 100%
 Get more real data
@@ -97,10 +96,12 @@ const unpromoteStats = (attributes) => attributes.map(attr => ({
 const Attribute = ({ attr, setVal, promoted }) =>
   <div>
     <span className="attr__name">{attr.name}:</span>
-    <input className="attr__input" type="text" value={attr.current} onChange={e => setVal(parseInt(e.target.value))} />
+    <span className="attr__input">
+      <input className={`attr__input-form ${attr.current === attr.cap[promoted ? 1 : 0] ? 'at-cap' : ''}`} type="number" value={attr.current} onChange={e => setVal(parseInt(e.target.value))} />
+    </span>
     <span className="attr__avg">{attr.avg}</span>
     <span className="attr__growth">{attr.growth}</span>
-    <span className="attr__cap">{promoted ? attr.cap[1] : attr.cap[0]}</span>
+    <span className={`attr__cap ${attr.current === attr.cap[promoted ? 1 : 0] ? 'at-cap' : ''}`}>{attr.cap[promoted ? 1 : 0]}</span>
   </div>
 
 const Character = ({ character, reset }) => {
@@ -164,19 +165,24 @@ const Character = ({ character, reset }) => {
   return (
     <div className="character">
       <div className="character__info">
-        <h1 className="character__name">{character.name}</h1>
-        <div className="character__lvl">Current Level: <span className="character__lvl-data">{displayLvl}</span></div>
-        <div>Class: <span className={promoted ? '' : 'bold'}>{character.class[0]}</span> &rarr; <span className={promoted ? 'bold' : ''}>{character.class[1]}</span></div>
-        <div>Total Levels: {lvl} (before promotion + after promotion)</div>
-        <div>Promoted at level: {promoted ? lvlPromotedAt : 'NA'}</div>
-        <button className="character__reset" onClick={reset}>&larr; Back to character select</button>
+        <div className="character__img-wrapper">
+          <img className="character__img" src={character.img} />
+        </div>
+        <div className="character__desc">
+          <h1 className="character__name">{character.name}</h1>
+          <div className="character__lvl">Current Level: <span className="character__lvl-data">{displayLvl}</span></div>
+          <div>Class: <span className={promoted ? '' : 'bold'}>{character.class[0]}</span> &rarr; <span className={promoted ? 'bold' : ''}>{character.class[1]}</span></div>
+          <div>Total Levels: {lvl} (before promotion + after promotion)</div>
+          <div>Promoted at level: {promoted ? lvlPromotedAt : 'NA'}</div>
+          <button className="character__reset" onClick={reset}>&larr; Back to character select</button>
+        </div>
       </div>
       <div className="character__stats">
         <span className="attr__name"></span>
-        <span className="attr__input"></span>
-        <span className="attr__avg">Average for level</span>
-        <span className="attr__growth">Growth per level</span>
-        <span className="attr__cap">Stat Cap</span>
+        <span className="attr__input attr__header">Current</span>
+        <span className="attr__avg attr__header">Average for level</span>
+        <span className="attr__growth attr__header">Growth chance</span>
+        <span className="attr__cap attr__header">Stat Cap</span>
         {stats.map((attr, i) =>
           <Attribute
             key={attr.name}
@@ -230,7 +236,6 @@ const Character = ({ character, reset }) => {
           Promote
         </div>
       </div>
-      <img className="character__img" src={character.img} />
     </div>
   )
 };
@@ -244,7 +249,7 @@ const CharacterSelect = ({ setCharacter }) =>
 
 
 const App = () => {
-  const [character, setCharacter] = useState(null);
+  const [character, setCharacter] = useState('oswin');
   return (
     <div>
       {character && <Character character={characterData[character]} reset={() => setCharacter(null)}/>}

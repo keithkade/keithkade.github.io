@@ -3,11 +3,10 @@
 // npx babel --watch stuff/felevels/src --out-dir stuff/felevels/build --presets react-app/prod
 
 /* TODO
-Special styling when capped
 Basic Instructions
-Overall styling (Reset button)
-Fix Bugs (DEPROMOTE CAN CAUSE FLOAT ISSUE)
-Two characters
+Overall styling
+Two characters (Get real Lyn info)
+Make it work-ish on mobile
 ==== AFTER POST FOR FEEDBACK ====
 Support for growths more than 100%
 Get more real data
@@ -108,9 +107,13 @@ var Attribute = function Attribute(_ref) {
       attr.name,
       ':'
     ),
-    React.createElement('input', { className: 'attr__input', type: 'text', value: attr.current, onChange: function onChange(e) {
-        return setVal(parseInt(e.target.value));
-      } }),
+    React.createElement(
+      'span',
+      { className: 'attr__input' },
+      React.createElement('input', { className: 'attr__input-form ' + (attr.current === attr.cap[promoted ? 1 : 0] ? 'at-cap' : ''), type: 'number', value: attr.current, onChange: function onChange(e) {
+          return setVal(parseInt(e.target.value));
+        } })
+    ),
     React.createElement(
       'span',
       { className: 'attr__avg' },
@@ -123,8 +126,8 @@ var Attribute = function Attribute(_ref) {
     ),
     React.createElement(
       'span',
-      { className: 'attr__cap' },
-      promoted ? attr.cap[1] : attr.cap[0]
+      { className: 'attr__cap ' + (attr.current === attr.cap[promoted ? 1 : 0] ? 'at-cap' : '') },
+      attr.cap[promoted ? 1 : 0]
     )
   );
 };
@@ -220,73 +223,86 @@ var Character = function Character(_ref2) {
       'div',
       { className: 'character__info' },
       React.createElement(
-        'h1',
-        { className: 'character__name' },
-        character.name
+        'div',
+        { className: 'character__img-wrapper' },
+        React.createElement('img', { className: 'character__img', src: character.img })
       ),
       React.createElement(
         'div',
-        { className: 'character__lvl' },
-        'Current Level: ',
+        { className: 'character__desc' },
         React.createElement(
-          'span',
-          { className: 'character__lvl-data' },
-          displayLvl
-        )
-      ),
-      React.createElement(
-        'div',
-        null,
-        'Class: ',
-        React.createElement(
-          'span',
-          { className: promoted ? '' : 'bold' },
-          character.class[0]
+          'h1',
+          { className: 'character__name' },
+          character.name
         ),
-        ' \u2192 ',
         React.createElement(
-          'span',
-          { className: promoted ? 'bold' : '' },
-          character.class[1]
+          'div',
+          { className: 'character__lvl' },
+          'Current Level: ',
+          React.createElement(
+            'span',
+            { className: 'character__lvl-data' },
+            displayLvl
+          )
+        ),
+        React.createElement(
+          'div',
+          null,
+          'Class: ',
+          React.createElement(
+            'span',
+            { className: promoted ? '' : 'bold' },
+            character.class[0]
+          ),
+          ' \u2192 ',
+          React.createElement(
+            'span',
+            { className: promoted ? 'bold' : '' },
+            character.class[1]
+          )
+        ),
+        React.createElement(
+          'div',
+          null,
+          'Total Levels: ',
+          lvl,
+          ' (before promotion + after promotion)'
+        ),
+        React.createElement(
+          'div',
+          null,
+          'Promoted at level: ',
+          promoted ? lvlPromotedAt : 'NA'
+        ),
+        React.createElement(
+          'button',
+          { className: 'character__reset', onClick: reset },
+          '\u2190 Back to character select'
         )
-      ),
-      React.createElement(
-        'div',
-        null,
-        'Total Levels: ',
-        lvl,
-        ' (before promotion + after promotion)'
-      ),
-      React.createElement(
-        'div',
-        null,
-        'Promoted at level: ',
-        promoted ? lvlPromotedAt : 'NA'
-      ),
-      React.createElement(
-        'button',
-        { className: 'character__reset', onClick: reset },
-        '\u2190 Back to character select'
       )
     ),
     React.createElement(
       'div',
       { className: 'character__stats' },
       React.createElement('span', { className: 'attr__name' }),
-      React.createElement('span', { className: 'attr__input' }),
       React.createElement(
         'span',
-        { className: 'attr__avg' },
+        { className: 'attr__input attr__header' },
+        'Current'
+      ),
+      React.createElement(
+        'span',
+        { className: 'attr__avg attr__header' },
         'Average for level'
       ),
       React.createElement(
         'span',
-        { className: 'attr__growth' },
-        'Growth per level'
+        { className: 'attr__growth attr__header' },
+        'Growth chance'
       ),
       React.createElement(
         'span',
-        { className: 'attr__cap' },
+        { className: 'attr__cap attr__header' },
         'Stat Cap'
       ),
       stats.map(function (attr, i) {
@@ -349,8 +365,7 @@ var Character = function Character(_ref2) {
         }),
         'Promote'
       )
-    ),
-    React.createElement('img', { className: 'character__img', src: character.img })
+    )
   );
 };
 
@@ -374,7 +389,7 @@ var CharacterSelect = function CharacterSelect(_ref3) {
 };
 
 var App = function App() {
-  var _useState11 = useState(null),
+  var _useState11 = useState('oswin'),
       _useState12 = _slicedToArray(_useState11, 2),
       character = _useState12[0],
       setCharacter = _useState12[1];
