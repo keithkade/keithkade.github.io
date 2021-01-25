@@ -33,7 +33,6 @@ html, body {
   margin: 0.5rem;
   padding: 1rem;
   width: 32rem;
-  min-width: 32rem;
   max-width: 32rem;
   background-color: #3163c0;
   border: 3px solid #e8e0c2;
@@ -189,4 +188,20 @@ html, body {
   margin: 1px;
   height: 10rem;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+  .character__img {
+    width: 5rem;
+  }
+  .character__img-wrapper {
+    width: 5rem;
+  }
+  .character__desc {
+    width: calc(100% - 6rem);
+  }
+  .character__stats,
+  .character__info {
+    width: 26rem;
+  }
 }

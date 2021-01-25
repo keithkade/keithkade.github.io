@@ -328,7 +328,7 @@ var Character = function Character(_ref2) {
             } },
           '-1'
         ),
-        React.createElement('input', { style: { width: (19 + lvlPromotedAt) / 1.5 + 'rem' }, type: 'range', min: 1, max: 19 + lvlPromotedAt, value: lvl, className: 'slider',
+        React.createElement('input', { style: { width: (19 + lvlPromotedAt) / 2 + 'rem' }, type: 'range', min: 1, max: 19 + lvlPromotedAt, value: lvl, className: 'slider',
           onChange: function onChange(e) {
             var newLvl = Number(e.target.value);
             handleLvlChange(lvl, newLvl);
@@ -387,7 +387,7 @@ var CharacterSelect = function CharacterSelect(_ref3) {
 };
 
 var App = function App() {
-  var _useState11 = useState(null),
+  var _useState11 = useState('oswin'),
       _useState12 = _slicedToArray(_useState11, 2),
       character = _useState12[0],
       setCharacter = _useState12[1];

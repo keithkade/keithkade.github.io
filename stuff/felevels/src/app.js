@@ -202,7 +202,7 @@ const Character = ({ character, reset }) => {
             }}>
             -1
           </button>
-          <input style={{width: `${(19 + lvlPromotedAt)/1.5}rem`}} type="range" min={1} max={19 + lvlPromotedAt} value={lvl} className="slider"
+          <input style={{width: `${(19 + lvlPromotedAt)/2}rem`}} type="range" min={1} max={19 + lvlPromotedAt} value={lvl} className="slider"
             onChange={(e) => {
               const newLvl = Number(e.target.value);
               handleLvlChange(lvl, newLvl);
@@ -247,7 +247,7 @@ const CharacterSelect = ({ setCharacter }) =>
 
 
 const App = () => {
-  const [character, setCharacter] = useState(null);
+  const [character, setCharacter] = useState('oswin');
   return (
     <div>
       {character && <Character character={characterData[character]} reset={() => setCharacter(null)}/>}
