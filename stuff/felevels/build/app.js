@@ -3,16 +3,15 @@
 // npx babel --watch stuff/felevels/src --out-dir stuff/felevels/build --presets react-app/prod
 
 /* TODO
-Basic Instructions
 Overall styling
-Two characters (Get real Lyn info)
 Make it work-ish on mobile
 ==== AFTER POST FOR FEEDBACK ====
 Support for growths more than 100%
-Get more real data
+Get more real data (write script, find automatic source) fireemblemwiki.org https://serenesforest.net/
 Character picker
 Game picker
-Make promote a toggle
+"Custom" mode
+Support for multiple promotion paths
 */
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
@@ -31,17 +30,17 @@ var oswinData = {
   promoted: false,
   img: '/img/compressed/felevels/fe7/Oswin.png',
   startLvl: 9,
-  attributes: [{ name: 'HP', base: 28, growth: .9, cap: [60, 60], promote: 4 }, { name: 'Str', base: 13, growth: .4, cap: [20, 29], promote: 2 }, { name: 'Skl', base: 9, growth: .3, cap: [20, 27], promote: 2 }, { name: 'Spd', base: 5, growth: .3, cap: [20, 24], promote: 3 }, { name: 'Lck', base: 3, growth: .35, cap: [30, 30], promote: 2 }, { name: 'Def', base: 13, growth: .55, cap: [20, 30], promote: 3 }, { name: 'Res', base: 3, growth: .30, cap: [20, 25], promote: 1 }]
+  attributes: [{ name: 'HP', base: 28, growth: .9, cap: [60, 60], promote: 4 }, { name: 'Str', base: 13, growth: .4, cap: [20, 29], promote: 2 }, { name: 'Skl', base: 9, growth: .3, cap: [20, 27], promote: 2 }, { name: 'Spd', base: 5, growth: .3, cap: [20, 24], promote: 3 }, { name: 'Lck', base: 3, growth: .35, cap: [30, 30], promote: 0 }, { name: 'Def', base: 13, growth: .55, cap: [20, 30], promote: 2 }, { name: 'Res', base: 3, growth: .30, cap: [20, 25], promote: 3 }]
 };
 
 var lynData = {
   name: 'Lyn',
   id: 'lyn',
-  class: ['Knight', 'General'],
+  class: ['Lord', 'Blade Lord'],
   promoted: false,
   img: '/img/compressed/felevels/fe7/Lyn.png',
-  startLvl: 9,
-  attributes: [{ name: 'HP', base: 28, growth: .9, cap: [60, 60], promote: 4 }, { name: 'Str', base: 13, growth: .4, cap: [20, 29], promote: 2 }, { name: 'Skl', base: 9, growth: .3, cap: [20, 27], promote: 2 }, { name: 'Spd', base: 5, growth: .3, cap: [20, 24], promote: 3 }, { name: 'Lck', base: 3, growth: .35, cap: [30, 30], promote: 2 }, { name: 'Def', base: 13, growth: .55, cap: [20, 30], promote: 3 }, { name: 'Res', base: 3, growth: .30, cap: [20, 25], promote: 1 }]
+  startLvl: 4,
+  attributes: [{ name: 'HP', base: 18, growth: .7, cap: [60, 60], promote: 3 }, { name: 'Str', base: 5, growth: .4, cap: [20, 24], promote: 3 }, { name: 'Skl', base: 10, growth: .6, cap: [20, 29], promote: 2 }, { name: 'Spd', base: 11, growth: .6, cap: [20, 30], promote: 0 }, { name: 'Lck', base: 5, growth: .55, cap: [30, 30], promote: 0 }, { name: 'Def', base: 2, growth: .2, cap: [20, 22], promote: 3 }, { name: 'Res', base: 0, growth: .3, cap: [20, 22], promote: 5 }]
 };
 
 var characterData = {
@@ -211,7 +210,6 @@ var Character = function Character(_ref2) {
   // if the user de-promotes and the new level is invalid, set us to the lvl promoted at
   useEffect(function () {
     if (!promoted && lvl > 20) {
-      console.log('DEPROMOTED AT LEVEL', lvl);
       handleLvlChange(lvl, lvlPromotedAt);
     }
   }, [promoted]);
@@ -298,7 +296,7 @@ var Character = function Character(_ref2) {
       React.createElement(
         'span',
         { className: 'attr__growth attr__header' },
-        'Growth chance'
+        'Growth rate'
       ),
       React.createElement(
         'span',
@@ -373,7 +371,7 @@ var CharacterSelect = function CharacterSelect(_ref3) {
   var setCharacter = _ref3.setCharacter;
   return React.createElement(
     'div',
-    { className: 'foooooo' },
+    null,
     React.createElement(
       'h1',
       null,
@@ -389,7 +387,7 @@ var CharacterSelect = function CharacterSelect(_ref3) {
 };
 
 var App = function App() {
-  var _useState11 = useState('oswin'),
+  var _useState11 = useState(null),
       _useState12 = _slicedToArray(_useState11, 2),
       character = _useState12[0],
       setCharacter = _useState12[1];
@@ -400,7 +398,27 @@ var App = function App() {
     character && React.createElement(Character, { character: characterData[character], reset: function reset() {
         return setCharacter(null);
       } }),
-    !character && React.createElement(CharacterSelect, { setCharacter: setCharacter })
+    !character && React.createElement(CharacterSelect, { setCharacter: setCharacter }),
+    React.createElement(
+      'div',
+      { className: 'instructions' },
+      React.createElement(
+        'h3',
+        null,
+        'Welcome to the Fire Emblem level up simulator (Beta)'
+      ),
+      React.createElement(
+        'p',
+        null,
+        'This allows you to predict your specific character\'s future stats. Curious whether to abandon a character after a series of bad level ups? Wondering if using that item is worth it? This tool can help you out.'
+      ),
+      React.createElement('br', null),
+      React.createElement(
+        'p',
+        null,
+        'To use it, select a character, then set the level to match your character\'s current level via the level up buttons or the slider, and set the current stats based on your in-game stats. Then you can use change the level to simulate your character\'s growth. As they level up, the tool simulates leveling up according to the characters growths. The current stats then update accordingly. You can also see what the average for that stat would be at each level. By default, promotion is assumed to happen at level 20, but you can also manually promote by toggling the checkbox at whatever level you want.'
+      )
+    )
   );
 };
 

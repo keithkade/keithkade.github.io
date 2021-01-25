@@ -8,20 +8,22 @@ html, body {
   background: #ebf2ed !important;
 }
 
-#app {
-  padding: 1rem;
-}
-
 .character {
   color: white;
 }
 
-.character__info {
-  /* margin-bottom: 2rem; */
-}
-
 .column {
   display: inline-block;
+}
+
+.instructions {
+  color: black;
+  margin: 0.5rem;
+  max-width: 64rem;
+}
+
+.instructions p {
+  line-height: 1.4;
 }
 
 .character__stats,

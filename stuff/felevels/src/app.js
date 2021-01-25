@@ -3,16 +3,15 @@
 // npx babel --watch stuff/felevels/src --out-dir stuff/felevels/build --presets react-app/prod
 
 /* TODO
-Basic Instructions
 Overall styling
-Two characters (Get real Lyn info)
 Make it work-ish on mobile
 ==== AFTER POST FOR FEEDBACK ====
 Support for growths more than 100%
-Get more real data
+Get more real data (write script, find automatic source) fireemblemwiki.org https://serenesforest.net/
 Character picker
 Game picker
-Make promote a toggle
+"Custom" mode
+Support for multiple promotion paths
 */
 
 const { useState, useEffect } = React;
@@ -29,27 +28,27 @@ const oswinData = {
     { name: 'Str', base: 13,  growth: .4,  cap: [20, 29], promote: 2 },
     { name: 'Skl', base: 9,   growth: .3,  cap: [20, 27], promote: 2 },
     { name: 'Spd', base: 5,   growth: .3,  cap: [20, 24], promote: 3 },
-    { name: 'Lck', base: 3,   growth: .35, cap: [30, 30], promote: 2 },
-    { name: 'Def', base: 13,  growth: .55, cap: [20, 30], promote: 3 },
-    { name: 'Res', base: 3,   growth: .30, cap: [20, 25], promote: 1 },
+    { name: 'Lck', base: 3,   growth: .35, cap: [30, 30], promote: 0 },
+    { name: 'Def', base: 13,  growth: .55, cap: [20, 30], promote: 2 },
+    { name: 'Res', base: 3,   growth: .30, cap: [20, 25], promote: 3 },
   ]
 };
 
 const lynData = {
   name: 'Lyn',
   id: 'lyn',
-  class: ['Knight', 'General'],
+  class: ['Lord', 'Blade Lord'],
   promoted: false,
   img: '/img/compressed/felevels/fe7/Lyn.png',
-  startLvl: 9,
+  startLvl: 4,
   attributes: [
-    { name: 'HP',  base: 28,  growth: .9,  cap: [60, 60], promote: 4 },
-    { name: 'Str', base: 13,  growth: .4,  cap: [20, 29], promote: 2 },
-    { name: 'Skl', base: 9,   growth: .3,  cap: [20, 27], promote: 2 },
-    { name: 'Spd', base: 5,   growth: .3,  cap: [20, 24], promote: 3 },
-    { name: 'Lck', base: 3,   growth: .35, cap: [30, 30], promote: 2 },
-    { name: 'Def', base: 13,  growth: .55, cap: [20, 30], promote: 3 },
-    { name: 'Res', base: 3,   growth: .30, cap: [20, 25], promote: 1 },
+    { name: 'HP',  base: 18, growth: .7,  cap: [60, 60], promote: 3 },
+    { name: 'Str', base: 5,  growth: .4,  cap: [20, 24], promote: 3 },
+    { name: 'Skl', base: 10, growth: .6,  cap: [20, 29], promote: 2 },
+    { name: 'Spd', base: 11, growth: .6,  cap: [20, 30], promote: 0 },
+    { name: 'Lck', base: 5,  growth: .55, cap: [30, 30], promote: 0 },
+    { name: 'Def', base: 2,  growth: .2,  cap: [20, 22], promote: 3 },
+    { name: 'Res', base: 0,  growth: .3,  cap: [20, 22], promote: 5 },
   ]
 };
 
@@ -157,7 +156,6 @@ const Character = ({ character, reset }) => {
   // if the user de-promotes and the new level is invalid, set us to the lvl promoted at
   useEffect(() => {
     if (!promoted && lvl > 20) {
-      console.log('DEPROMOTED AT LEVEL', lvl);
       handleLvlChange(lvl, lvlPromotedAt);
     }
   }, [promoted]);
@@ -181,7 +179,7 @@ const Character = ({ character, reset }) => {
         <span className="attr__name"></span>
         <span className="attr__input attr__header">Current</span>
         <span className="attr__avg attr__header">Average for level</span>
-        <span className="attr__growth attr__header">Growth chance</span>
+        <span className="attr__growth attr__header">Growth rate</span>
         <span className="attr__cap attr__header">Stat Cap</span>
         {stats.map((attr, i) =>
           <Attribute
@@ -241,7 +239,7 @@ const Character = ({ character, reset }) => {
 };
 
 const CharacterSelect = ({ setCharacter }) =>
-  <div className="foooooo">
+  <div>
     <h1>Select a character:</h1>
     <img className="character_select_img" onClick={() => setCharacter(oswinData.id)} src={oswinData.img} />
     <img className="character_select_img" onClick={() => setCharacter(lynData.id)} src={lynData.img} />
@@ -249,11 +247,21 @@ const CharacterSelect = ({ setCharacter }) =>
 
 
 const App = () => {
-  const [character, setCharacter] = useState('oswin');
+  const [character, setCharacter] = useState(null);
   return (
     <div>
       {character && <Character character={characterData[character]} reset={() => setCharacter(null)}/>}
       {!character && <CharacterSelect setCharacter={setCharacter}/>}
+      <div className="instructions">
+        <h3>Welcome to the Fire Emblem level up simulator (Beta)</h3>
+        <p>This allows you to predict your specific character's future stats. Curious whether to abandon a character after a series of bad level ups?
+        Wondering if using that item is worth it? This tool can help you out.</p>
+        <br/>
+        <p>To use it, select a character, then set the level to match your character's current level via the level up buttons or the slider, and set the current stats based on your in-game stats.
+        Then you can use change the level to simulate your character's growth. As they level up, the tool simulates leveling up according to the characters growths.
+        The current stats then update accordingly. You can also see what the average for that stat would be at each level.
+        By default, promotion is assumed to happen at level 20, but you can also manually promote by toggling the checkbox at whatever level you want.</p>
+      </div>
     </div>
   );
 }
