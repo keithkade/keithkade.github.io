@@ -4,8 +4,12 @@
   padding: 0;
 }
 
-html, body {
+html, body, #mainContent {
   background: #ebf2ed !important;
+}
+
+#wrapper {
+  margin: 1px 4% 2% 4% !important;
 }
 
 .character {
@@ -191,6 +195,9 @@ html, body {
 }
 
 @media only screen and (max-width: 600px) {
+  #wrapper {
+    margin: 1px 1% 1% 1% !important;
+  }
   .character__img {
     width: 5rem;
   }
