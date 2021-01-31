@@ -79,14 +79,11 @@ html, body {
 }
 
 .level_controls {
-  margin-top: 1rem;
   display: flex;
   align-content: center;
   align-items: center;
-}
-
-.slider {
-  margin: 0 .5rem 0 .5rem;
+  flex-wrap: wrap;
+  margin: .5rem 0 0 0;
 }
 
 .slider {
@@ -95,6 +92,19 @@ html, body {
   height: .2rem;
   background: #bbbbbb;
   outline: none;
+  display: inline-block;
+  margin: .5rem 0 .5rem 0;
+}
+
+.level_btn {
+  background-color: #e8e0c2;
+  border: 1px solid black;
+  padding: 2px 4px;
+  display: inline-block;
+  border-radius: 4px;
+  width: 2rem;
+  cursor: pointer;
+  margin: .5rem 0.25rem .5rem 0;
 }
 
 .slider::-webkit-slider-thumb {
@@ -115,16 +125,6 @@ html, body {
   cursor: pointer;
 }
 
-.level_btn {
-  background-color: #e8e0c2;
-  border: 1px solid black;
-  padding: 2px 4px;
-  display: inline-block;
-  border-radius: 4px;
-  width: 2rem;
-  cursor: pointer;
-}
-
 .character__reset {
   float: right;
   display: inline-block;
@@ -138,7 +138,7 @@ html, body {
 }
 
 .promote-container {
-  margin-top: 1rem;
+  margin-top: 0.25rem;
 }
 
 .attr__name {
@@ -149,12 +149,12 @@ html, body {
 
 .attr__input {
   margin-left: .5rem;
-  width: 4.5rem;
+  width: 4rem;
   display: inline-block;
 }
 
 .attr__input-form {
-  width: 3.5rem;
+  width: 2.5rem;
   font-size: 1rem;
   padding: 1px;
   margin-top: 2px;
@@ -166,19 +166,19 @@ html, body {
 
 .attr__avg {
   margin-left: 1rem;
-  width: 4.5rem;
+  width: 4rem;
   display: inline-block;
 }
 
 .attr__growth {
   margin-left: 1rem;
-  width: 4.5rem;
+  width: 4rem;
   display: inline-block;
 }
 
 .attr__cap {
   margin-left: 1rem;
-  width: 4.5rem;
+  width: 4rem;
   display: inline-block;
 }
 
@@ -202,6 +202,6 @@ html, body {
   }
   .character__stats,
   .character__info {
-    width: 26rem;
+    width: 24rem;
   }
 }

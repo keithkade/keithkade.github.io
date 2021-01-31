@@ -3,8 +3,7 @@
 // npx babel --watch stuff/felevels/src --out-dir stuff/felevels/build --presets react-app/prod
 
 /* TODO
-Overall styling
-Make it work-ish on mobile
+Make it work-ish on mobile (move level up buttons below slider)
 ==== AFTER POST FOR FEEDBACK ====
 Support for growths more than 100%
 Get more real data (write script, find automatic source) fireemblemwiki.org https://serenesforest.net/
@@ -202,12 +201,6 @@ const Character = ({ character, reset }) => {
             }}>
             -1
           </button>
-          <input style={{width: `${(19 + lvlPromotedAt)/2}rem`}} type="range" min={1} max={19 + lvlPromotedAt} value={lvl} className="slider"
-            onChange={(e) => {
-              const newLvl = Number(e.target.value);
-              handleLvlChange(lvl, newLvl);
-            }}
-          />
           <button
             className="level_btn"
             disabled={lvl === MAX_LVL}
@@ -216,6 +209,12 @@ const Character = ({ character, reset }) => {
             }}>
             +1
           </button>
+          <input style={{width: `${(19 + lvlPromotedAt)/2}rem`}} type="range" min={1} max={19 + lvlPromotedAt} value={lvl} className="slider"
+            onChange={(e) => {
+              const newLvl = Number(e.target.value);
+              handleLvlChange(lvl, newLvl);
+            }}
+          />
         </div>
         <div className="promote-container">
           <input type="checkbox"

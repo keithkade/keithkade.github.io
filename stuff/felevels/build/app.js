@@ -3,8 +3,7 @@
 // npx babel --watch stuff/felevels/src --out-dir stuff/felevels/build --presets react-app/prod
 
 /* TODO
-Overall styling
-Make it work-ish on mobile
+Make it work-ish on mobile (move level up buttons below slider)
 ==== AFTER POST FOR FEEDBACK ====
 Support for growths more than 100%
 Get more real data (write script, find automatic source) fireemblemwiki.org https://serenesforest.net/
@@ -328,12 +327,6 @@ var Character = function Character(_ref2) {
             } },
           '-1'
         ),
-        React.createElement('input', { style: { width: (19 + lvlPromotedAt) / 2 + 'rem' }, type: 'range', min: 1, max: 19 + lvlPromotedAt, value: lvl, className: 'slider',
-          onChange: function onChange(e) {
-            var newLvl = Number(e.target.value);
-            handleLvlChange(lvl, newLvl);
-          }
-        }),
         React.createElement(
           'button',
           {
@@ -343,7 +336,13 @@ var Character = function Character(_ref2) {
               handleLvlChange(lvl, lvl + 1);
             } },
           '+1'
-        )
+        ),
+        React.createElement('input', { style: { width: (19 + lvlPromotedAt) / 2 + 'rem' }, type: 'range', min: 1, max: 19 + lvlPromotedAt, value: lvl, className: 'slider',
+          onChange: function onChange(e) {
+            var newLvl = Number(e.target.value);
+            handleLvlChange(lvl, newLvl);
+          }
+        })
       ),
       React.createElement(
         'div',
