@@ -3,7 +3,6 @@
 // npx babel --watch stuff/felevels/src --out-dir stuff/felevels/build --presets react-app/prod
 
 /* TODO
-Make it work-ish on mobile (move level up buttons below slider)
 ==== AFTER POST FOR FEEDBACK ====
 Support for growths more than 100%
 Get more real data (write script, find automatic source) fireemblemwiki.org https://serenesforest.net/
@@ -386,7 +385,7 @@ var CharacterSelect = function CharacterSelect(_ref3) {
 };
 
 var App = function App() {
-  var _useState11 = useState('oswin'),
+  var _useState11 = useState(),
       _useState12 = _slicedToArray(_useState11, 2),
       character = _useState12[0],
       setCharacter = _useState12[1];
