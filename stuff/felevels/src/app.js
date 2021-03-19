@@ -5,11 +5,15 @@
 /* TODO
 ==== AFTER POST FOR FEEDBACK ====
 Support for growths more than 100%
-Get more real data (write script, find automatic source) fireemblemwiki.org https://serenesforest.net/
-Character picker
-Game picker
-"Custom" mode
+Get more real data (write script, find automatic source) fireemblemwiki.org https://serenesforest.net/ http://fea.fewiki.net/fea.php?character=gilliam&game=8e
+Rest of FE7
+Game Picker
+FE6
+FE8
 Support for multiple promotion paths
+"Custom" mode
+Better Styles
+Fix up metadata (so it's not my personal stuff)
 */
 
 const { useState, useEffect } = React;
