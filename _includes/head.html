@@ -1,17 +1,26 @@
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-71899560-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-71899560-1');
+    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="I'm Kade Keith, a Computer Scientist specializing in front end development. I try to make complicated things simple.">
-    
+    <meta name="description" content="Kade Keith's personal website - home of side projects and a blog">
+
     <!-- Start social sharing meta -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@kade_keith" />
     <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
-    <meta name="twitter:description" content="I'm Kade Keith, a Computer Scientist specializing in front end development. I try to make complicated things simple." />
+    <meta name="twitter:description" content="Kade Keith's personal website - home of side projects and a blog" />
     <meta name="twitter:image" content="http://kadekeith.me/img/compressed/splash-background.png" />
     <meta property="og:url" content="http://kadekeith.me/" />
     <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
-    <meta property="og:description" content="I'm Kade Keith, a Computer Scientist specializing in front end development. I try to make complicated things simple." />
+    <meta property="og:description" content="Kade Keith's personal website - home of side projects and a blog" />
     <meta property="og:image" content="http://kadekeith.me/img/compressed/splash-background.png" />
     <!-- end social sharing meta -->
 
