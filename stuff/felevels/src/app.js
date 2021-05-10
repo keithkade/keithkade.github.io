@@ -18,6 +18,14 @@ Fix up metadata (so it's not my personal stuff)
 
 const { useState, useEffect } = React;
 
+function usePrevious(value) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
+
 const oswinData = {
   name: 'Oswin',
   id: 'oswin',
@@ -94,6 +102,7 @@ const unpromoteStats = (attributes) => attributes.map(attr => ({
   current: attr.current - attr.promote,
 }));
 
+// TODO if the attribute changed, visually highlight that some how. prevStats vs stats
 const Attribute = ({ attr, setVal, promoted }) =>
   <div>
     <span className="attr__name">{attr.name}:</span>
@@ -109,6 +118,7 @@ const Character = ({ character, reset }) => {
   const initialStats = character.attributes.map(attr => ({...attr, current: attr.base, avg: attr.base}));
 
   const [stats, setStats] = useState(initialStats);
+  const prevStats = usePrevious(stats);
 
   const [promoted, setPromoted] = useState(character.promoted);
 
@@ -126,9 +136,9 @@ const Character = ({ character, reset }) => {
     let newStats = stats;
     for (let i = 0; i < Math.abs(diff); i++) {
       if (newLvl > lvl) {
-        newStats = levelUpAttributes(newStats, promoted);
+        newStats = levelUpAttributes(stats, promoted);
       } else {
-        newStats = levelDownAttributes(newStats, promoted);
+        newStats = levelDownAttributes(stats, promoted);
       }
     }
     setLvl(newLvl);
