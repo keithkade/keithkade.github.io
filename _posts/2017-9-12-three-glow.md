@@ -4,13 +4,13 @@ title:  three.js glow shader
 subtitle:  A (close-enough) bloom filter
 date:   2017-09-12 -0600
 author: Kade Keith
-header: '/img/compressed/glow-torus.png'
-preview_img: '/img/compressed/glow-torus.png'
+header: '/compressed/glow-torus.png'
+preview_img: '/compressed/glow-torus.png'
 ---
 
 For a recent school project, I set out to achieve a glow effect using three js for the stars and lasers in a [space scene](/stuff/space-battle-boids). I stumbled upon a very helpful [blog post](http://stemkoski.blogspot.com/2013/07/shaders-in-threejs-glow-and-halo.html) from Lee Stemkoski detailing his approach to a glow shader. With just a minor tweak, I was able to achieve the effects shown above and below. [Interactive Demo](/stuff/three/glow/)
 
-![battle boids screenshot](/img/compressed/boid-shot.png)
+![battle boids screenshot](/compressed/boid-shot.png)
 
 ## The Shader
 The glow effect works based on the idea that if you have a mesh with smooth, rounded corners the dot product of the view angle and the normal of a face will be highest at the center of the object, and lowest (approaching 0) at the edges. Using this property, we can effectively create a satisfying glow effect.

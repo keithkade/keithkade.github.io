@@ -5,14 +5,14 @@ subtitle:  "Thoughts on revisiting old games"
 date:   2013-10-31 -0600
 author: Kade Keith
 header: "none"
-preview_img: '/img/compressed/windwaker.png'
+preview_img: '/compressed/windwaker.png'
 ---
 
 Remember those games you played as a kid? You should give them another chance.
 
 I thought about this as Ganondorf delivered his final line upon completion of The Legend of Zelda: The Windwaker HD.
 
-![Wind Waker Final Cutscene Screenshot](/img/compressed/windwaker.png)
+![Wind Waker Final Cutscene Screenshot](/compressed/windwaker.png)
 
 When I first played this game, I was ten years old. I played it once, had a jolly good time and forgot about that adventure for the time being. Now I am twenty and The Windwaker still holds the charm it held for me as a child. Additionally, some of the poignant moments that I glossed over as a child now resonate with me fully, such as Ganondorf's final words.
 

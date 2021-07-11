@@ -3,7 +3,7 @@ title: "Eat Your Feelings"
 
 link: "https://github.com/keithkade/yelpFeelings"
 
-img: "/img/compressed/eat.jpg"
+img: "/compressed/eat.jpg"
 
 has_source: true
 source: "https://github.com/keithkade/yelpFeelings"

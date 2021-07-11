@@ -3,7 +3,7 @@ title: "Fantegio"
 
 link: "https://www.youtube.com/watch?v=1_Y-zk_Jgrg"
 
-img: "/img/compressed/commander.png"
+img: "/compressed/commander.png"
 
 has_source: true
 source: "https://github.com/keithkade/Fantegio"

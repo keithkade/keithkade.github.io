@@ -4,8 +4,8 @@ title:  "Thoughts on Programmer Interviews"
 subtitle:  A Graduating Student's Perspective
 date:   2016-03-15 -0600
 author: Kade Keith
-header: '/img/compressed/techInterview.jpg'
-preview_img: '/img/compressed/techInterview.jpg'
+header: '/compressed/techInterview.jpg'
+preview_img: '/compressed/techInterview.jpg'
 ---
 
 I'm graduating this semester, meaning I spent the better part of last four years job hunting. Three internships and a full-time offer later, I've had a lot of interviews, and thought it would be a good time to write down my experiences and thoughts on the state of talent acquisition for tech. One important thing to know about tech interviews is that, like the jobs they seek to fill, they are constantly changing. There are books written solely on the topic from both the interviewer's and the candidate's perspective.

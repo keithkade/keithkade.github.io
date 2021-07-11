@@ -31,7 +31,7 @@ const oswinData = {
   id: 'oswin',
   class: ['Knight', 'General'],
   promoted: false,
-  img: '/img/compressed/felevels/fe7/Oswin.png',
+  img: '/compressed/felevels/fe7/Oswin.png',
   startLvl: 9,
   attributes: [
     { name: 'HP',  base: 28,  growth: .9,  cap: [60, 60], promote: 4 },
@@ -49,7 +49,7 @@ const lynData = {
   id: 'lyn',
   class: ['Lord', 'Blade Lord'],
   promoted: false,
-  img: '/img/compressed/felevels/fe7/Lyn.png',
+  img: '/compressed/felevels/fe7/Lyn.png',
   startLvl: 4,
   attributes: [
     { name: 'HP',  base: 18, growth: .7,  cap: [60, 60], promote: 3 },

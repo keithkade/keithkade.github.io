@@ -3,7 +3,7 @@ title: "Forced-Directed Citation Visualization"
 
 link: "../stuff/classes/csce444/CitationVizBuild/app/"
 
-img: "/img/compressed/citationViz.png"
+img: "/compressed/citationViz.png"
 
 has_source: false
 ---

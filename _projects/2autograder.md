@@ -3,7 +3,7 @@ title: "AutoGrader"
 
 link: "https://vimeo.com/165659747"
 
-img: "/img/compressed/classroom.jpg"
+img: "/compressed/classroom.jpg"
 
 has_source: true
 source: "https://github.com/keithkade/autograder"

@@ -3,7 +3,7 @@ title: "Naive Dox"
 
 link: "./NaiveDox/Report.pdf"
 
-img: "/img/compressed/dox.jpg"
+img: "/compressed/dox.jpg"
 
 has_source: false
 ---

@@ -3,7 +3,7 @@ title: "Battle Boids"
 
 link: "/stuff/space-battle-boids/"
 
-img: "/img/compressed/battle-boids.png"
+img: "/compressed/battle-boids.png"
 
 has_source: true
 source: "https://github.com/keithkade/space-battle-boids"

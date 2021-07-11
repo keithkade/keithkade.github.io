@@ -303,21 +303,21 @@ function renderPage(page){
     switch(page){
         //choices
         case 'tworoads':
-            image.src = "img/compressed/tworoads-crop.jpg";
+            image.src = "compressed/tworoads-crop.jpg";
             ReactDOM.render(
                 <TwoRoadsNode leftRoadTarget="monolith" rightRoadTarget="monolith" />, 
                 container
             );
             break;
         case 'crossroads':
-            image.src = "img/compressed/crossroads-crop.jpg";
+            image.src = "compressed/crossroads-crop.jpg";
             ReactDOM.render(
                 <CrossRoadsNode northwestTarget="fountain" northeastTarget="chasm"  eastTarget="memex" />, 
                 container
             );
             break;
         case 'portals':
-            image.src = "img/compressed/portals-crop.jpg";
+            image.src = "compressed/portals-crop.jpg";
             ReactDOM.render(
                 <PortalsNode leftTarget='monolith' middleTarget={Util.getRandomEntry(PAGES)} rightTarget='chasm' />, 
                 container
@@ -325,28 +325,28 @@ function renderPage(page){
             break;            
         //landmarks
         case 'fountain':
-            image.src = "img/compressed/fountain-crop.jpg";
+            image.src = "compressed/fountain-crop.jpg";
             ReactDOM.render(
                 <FountainNode backTarget="tworoads" forwardTarget="crossroads" />, 
                 container
             );
             break;    
         case 'chasm':
-            image.src = "img/compressed/chasm-crop.jpg";        
+            image.src = "compressed/chasm-crop.jpg";        
             ReactDOM.render(
                 <ChasmNode leftTarget="portals" rightTarget="memex" />, 
                 container
             );
             break;    
         case 'memex':
-            image.src = "img/compressed/memex-crop.jpg";        
+            image.src = "compressed/memex-crop.jpg";        
             ReactDOM.render(
                 <MemexNode leftTarget="monolith" forwardTarget="crossroads" rightTarget="tworoads" />, 
                 container
             );
             break;
         case 'monolith':
-            image.src = "img/compressed/monolith-crop.jpg";        
+            image.src = "compressed/monolith-crop.jpg";        
             ReactDOM.render(
                 <MonolithNode leftTarget="portals" forwardTarget="crossroads" rightTarget="memex" />, 
                 container
@@ -354,7 +354,7 @@ function renderPage(page){
             break;               
         default:
             console.log('something went wrong. defaulting to portals');
-            image.src = "img/compressed/portals-crop.jpg";        
+            image.src = "compressed/portals-crop.jpg";        
             ReactDOM.render(
                 <PortalsNode leftTarget={Util.getRandomEntry(PAGES)} middleTarget={Util.getRandomEntry(PAGES)} rightTarget={Util.getRandomEntry(PAGES)} />, 
                 container

@@ -6,7 +6,7 @@ date:   2014-07-14 -0600
 author: Kade Keith
 categories: game review
 header: 'none'
-preview_img: '/img/compressed/atman.png'
+preview_img: '/compressed/atman.png'
 ---
 The Cave of Atman, found on Daniel Johnson's blog, [Daniel Primed](http://danielprimed.com/) and playable at [hypernexus]( http://hypernexus.itch.io/the-cave-of-atman).
 
@@ -14,4 +14,4 @@ This game looks like a strategy rpg, but is a puzzler at heart. In appearance, i
 
 I found this to be a quick and easy puzzle game with a bit of character that shows up at the end. My main complaint would be the difficulty curve. Mechanics are explained well and the interface is clear, but there is a huge ramp up in difficulty around level 25. Some more medium-difficulty levels would have rounded out the experience well.
 
-<span class="game-score"> **Score**: 3 cute pixel monks out of 5 ![3 out of 5](/img/compressed/atman.png)</span>
+<span class="game-score"> **Score**: 3 cute pixel monks out of 5 ![3 out of 5](/compressed/atman.png)</span>

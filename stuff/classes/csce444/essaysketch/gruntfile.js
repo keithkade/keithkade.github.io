@@ -11,7 +11,7 @@ module.exports = function(grunt) {
               expand: true,
               cwd: 'img/',
               src: ['*.jpg'],
-              dest: 'img/compressed/',
+              dest: 'compressed/',
               ext: '.jpg'
             }
           ]

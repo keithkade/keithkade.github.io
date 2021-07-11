@@ -29,7 +29,7 @@ var oswinData = {
   id: 'oswin',
   class: ['Knight', 'General'],
   promoted: false,
-  img: '/img/compressed/felevels/fe7/Oswin.png',
+  img: '/compressed/felevels/fe7/Oswin.png',
   startLvl: 9,
   attributes: [{ name: 'HP', base: 28, growth: .9, cap: [60, 60], promote: 4 }, { name: 'Str', base: 13, growth: .4, cap: [20, 29], promote: 2 }, { name: 'Skl', base: 9, growth: .3, cap: [20, 27], promote: 2 }, { name: 'Spd', base: 5, growth: .3, cap: [20, 24], promote: 3 }, { name: 'Lck', base: 3, growth: .35, cap: [30, 30], promote: 0 }, { name: 'Def', base: 13, growth: .55, cap: [20, 30], promote: 2 }, { name: 'Res', base: 3, growth: .30, cap: [20, 25], promote: 3 }]
 };
@@ -39,7 +39,7 @@ var lynData = {
   id: 'lyn',
   class: ['Lord', 'Blade Lord'],
   promoted: false,
-  img: '/img/compressed/felevels/fe7/Lyn.png',
+  img: '/compressed/felevels/fe7/Lyn.png',
   startLvl: 4,
   attributes: [{ name: 'HP', base: 18, growth: .7, cap: [60, 60], promote: 3 }, { name: 'Str', base: 5, growth: .4, cap: [20, 24], promote: 3 }, { name: 'Skl', base: 10, growth: .6, cap: [20, 29], promote: 2 }, { name: 'Spd', base: 11, growth: .6, cap: [20, 30], promote: 0 }, { name: 'Lck', base: 5, growth: .55, cap: [30, 30], promote: 0 }, { name: 'Def', base: 2, growth: .2, cap: [20, 22], promote: 3 }, { name: 'Res', base: 0, growth: .3, cap: [20, 22], promote: 5 }]
 };
