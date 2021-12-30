@@ -145,6 +145,16 @@ html, body, #mainContent {
   margin-top: 0.25rem;
 }
 
+.attr__arrow {
+  position: relative;
+  left: 2px;
+  opacity: 0;
+}
+
+.attr__arrow.changed {
+  opacity: 1;
+}
+
 .attr__name {
   width: 2rem;
   display: inline-block;

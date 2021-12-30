@@ -1,9 +1,8 @@
 'use strict';
 
-// npx babel --watch stuff/felevels/src --out-dir stuff/felevels/build --presets react-app/prod
+// npx babel --watch stuff/felevels/src --out-dir stuff/felevels/build
 
 /* TODO
-==== AFTER POST FOR FEEDBACK ====
 Support for growths more than 100%
 Get more real data (write script, find automatic source) fireemblemwiki.org https://serenesforest.net/ http://fea.fewiki.net/fea.php?character=gilliam&game=8e
 Rest of FE7
@@ -16,7 +15,7 @@ Better Styles
 Fix up metadata (so it's not my personal stuff)
 */
 
-const { useState, useEffect } = React;
+const { useState, useRef, useEffect } = React;
 
 function usePrevious(value) {
   const ref = useRef();
@@ -102,12 +101,12 @@ const unpromoteStats = (attributes) => attributes.map(attr => ({
   current: attr.current - attr.promote,
 }));
 
-// TODO if the attribute changed, visually highlight that some how. prevStats vs stats
-const Attribute = ({ attr, setVal, promoted }) =>
+const Attribute = ({ attr, didChange, setVal, promoted }) =>
   <div>
     <span className="attr__name">{attr.name}:</span>
     <span className="attr__input">
       <input className={`attr__input-form ${attr.current === attr.cap[promoted ? 1 : 0] ? 'at-cap' : ''}`} type="number" value={attr.current} onChange={e => setVal(parseInt(e.target.value))} />
+      <span className={`attr__arrow ${didChange ? 'changed' : ''}`}>{didChange === 'up' && <>&#8679;</>}{didChange === 'down' && <>&#8681;</>}</span>
     </span>
     <span className="attr__avg">{attr.avg}</span>
     <span className="attr__growth">{attr.growth}</span>
@@ -119,6 +118,8 @@ const Character = ({ character, reset }) => {
 
   const [stats, setStats] = useState(initialStats);
   const prevStats = usePrevious(stats);
+  const [statChanged, setStatChanged] = useState(Array(initialStats.length).fill(false));
+  const timeoutsRef = useRef({});
 
   const [promoted, setPromoted] = useState(character.promoted);
 
@@ -172,6 +173,25 @@ const Character = ({ character, reset }) => {
     }
   }, [promoted]);
 
+  // handle setting animation flags when values change
+  useEffect(() => {
+    clearTimeout(timeoutsRef.current.setChanged);
+    const changeIcons = []
+    stats.forEach((stat, i) => {
+      if (prevStats && stat.current !== prevStats[i].current) {
+        if (stat.current < prevStats[i].current) {
+          changeIcons.push('down');
+        } else {
+          changeIcons.push('up');
+        }
+      } else {
+        changeIcons.push(statChanged[i]); // keep as whatever was there before
+      }
+    })
+    setStatChanged(changeIcons);
+    timeoutsRef.current.setChanged = setTimeout(() => setStatChanged(Array(initialStats.length).fill(false)), 750);
+  }, [stats])
+
   return (
     <div className="character">
       <div className="character__info">
@@ -197,6 +217,7 @@ const Character = ({ character, reset }) => {
           <Attribute
             key={attr.name}
             attr={attr}
+            didChange={statChanged[i]}
             promoted={promoted}
             setVal={(val) => {
               const newStats = [...stats];
@@ -259,7 +280,7 @@ const CharacterSelect = ({ setCharacter }) =>
 
 
 const App = () => {
-  const [character, setCharacter] = useState();
+  const [character, setCharacter] = useState('oswin');
   return (
     <div>
       {character && <Character character={characterData[character]} reset={() => setCharacter(null)}/>}
@@ -271,7 +292,7 @@ const App = () => {
         <br/>
         <p>To use it, select a character, then set the level to match your character's current level via the level up buttons or the slider, and set the current stats based on your in-game stats.
         Then you can use change the level to simulate your character's growth. As they level up, the tool simulates leveling up according to the characters growths.
-        The current stats then update accordingly. You can also see what the average for that stat would be at each level.
+        The current stats then update accordingly, with the arrow icon flashing when a stat changes. You can also see what the average for that stat would be at each level.
         By default, promotion is assumed to happen at level 20, but you can also manually promote by toggling the checkbox at whatever level you want.</p>
       </div>
     </div>
