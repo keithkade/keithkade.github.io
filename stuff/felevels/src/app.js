@@ -3,16 +3,16 @@
 // npx babel --watch stuff/felevels/src --out-dir stuff/felevels/build
 
 /* TODO
-Support for growths more than 100%
+Fix bug where dragging up and down results in the average getting off
 Get more real data (write script, find automatic source) fireemblemwiki.org https://serenesforest.net/ http://fea.fewiki.net/fea.php?character=gilliam&game=8e
 Rest of FE7
-Game Picker
 FE6
-FE8
+Game Picker
+=== Release
 Support for multiple promotion paths
-"Custom" mode
-Better Styles
-Fix up metadata (so it's not my personal stuff)
+FE8
+"Custom" mode ???
+Better Styles ???
 */
 
 const { useState, useRef, useEffect } = React;
@@ -73,19 +73,23 @@ const round = (num) => Number((num).toFixed(3));
 
 const levelUpAttributes = (attributes, promoted) => attributes.map(attr => {
   const cap = attr.cap[promoted ? 1 : 0];
+  const automaticGrowth = parseInt(attr.growth);
+  const growthChance = attr.growth - automaticGrowth;
   return {
     ...attr,
     avg: Math.min(cap, round(attr.avg + attr.growth)),
-    current: Math.min(cap, Math.random() < attr.growth ? attr.current + 1 : attr.current),
+    current: Math.min(cap, (Math.random() < growthChance ? attr.current + 1 : attr.current) + automaticGrowth),
   }
 });
 
 const levelDownAttributes = (attributes, promoted) => attributes.map(attr => {
   const cap = attr.cap[promoted ? 1 : 0];
+  const automaticGrowth = parseInt(attr.growth);
+  const growthChance = attr.growth - automaticGrowth;
   return {
     ...attr,
     avg: Math.min(cap, round(attr.avg - attr.growth)),
-    current: Math.min(cap, Math.random() < attr.growth ? attr.current - 1 : attr.current),
+    current: Math.min(cap, (Math.random() < growthChance ? attr.current - 1 : attr.current) - automaticGrowth),
   }
 });
 
@@ -132,6 +136,7 @@ const Character = ({ character, reset }) => {
   // level after taking account whether or not the user is promoted
   const [displayLvl, setDisplayLvl] = useState(character.startLvl);
 
+  // TODO fix the bug where rapid coming up and down gets the average off
   const handleLvlChange = (oldLvl, newLvl) => {
     const diff = newLvl - oldLvl;
     let newStats = stats;
