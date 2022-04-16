@@ -179,7 +179,8 @@ const App = () => {
       <br/>
       <div className="instructions">
         <h3>Welcome to the Credit Card Category Coverage Chart (Alpha)</h3>
-        <p>This allows you to find category gaps in your credit card setup. Just select which cards you have/want and see your rewards per category. More functionality coming soon.</p>
+        <p>This allows you to find category gaps in your credit card setup. Just select which cards you have/want and see your rewards per category.
+        More functionality coming soon. Feel free to contribute changes to the <a traget="_blank" href="https://github.com/keithkade/keithkade.github.io/tree/master/stuff/credit-card-category-coverage">code repo</a></p>
       </div>
     </div>
   );
