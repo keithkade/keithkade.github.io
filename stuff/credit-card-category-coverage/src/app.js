@@ -29,6 +29,7 @@ function usePrevious(value) {
 
 const CATEGORIES = [
   { id: 'grocery', name: 'Groceries'},
+  { id: 'onlineGrocery', name: 'Online Groceries'},
   { id: 'dining', name: 'Dining '},
   { id: 'diningTakeout', name: 'Dining (Takeout)'},
   { id: 'drugstore', name: 'Drug Stores'},

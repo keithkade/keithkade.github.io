@@ -32,6 +32,9 @@ const CATEGORIES = [{
   id: 'grocery',
   name: 'Groceries'
 }, {
+  id: 'onlineGrocery',
+  name: 'Online Groceries'
+}, {
   id: 'dining',
   name: 'Dining '
 }, {

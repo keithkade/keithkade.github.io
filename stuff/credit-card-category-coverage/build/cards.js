@@ -10,6 +10,21 @@ const CARDS = [{
     other: .015
   }
 }, {
+  name: 'Chase Sapphire Preferred®',
+  id: 'chase-sapphire-preferred',
+  rewardsTypeId: 'chase-ultimate-rewards',
+  rewards: {
+    travelChasePortal: .05,
+    dining: .03,
+    diningTakeout: .03,
+    streaming: .03,
+    onlineGrocery: .03,
+    travel: .02,
+    other: .01
+  }
+}, // CHASE saphire reserve
+// Amex gold/silver/platinum
+{
   name: 'Amex Blue Cash Preferred® Card',
   id: 'blue-cash-preferred',
   rewardsTypeId: 'amex-reward-dollars',
