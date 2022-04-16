@@ -244,10 +244,10 @@ const App = () => {
     cat: cat
   }))), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
     className: "instructions"
-  }, /*#__PURE__*/React.createElement("h3", null, "Welcome to the Credit Card Category Coverage Chart (Alpha)"), /*#__PURE__*/React.createElement("p", null, "This allows you to find category gaps in your credit card setup. Just select which cards you have/want and see your rewards per category. More functionality coming soon. Feel free to contribute changes to the ", /*#__PURE__*/React.createElement("a", {
-    traget: "_blank",
+  }, /*#__PURE__*/React.createElement("h3", null, "Welcome to the Credit Card Category Coverage Chart (Alpha)"), /*#__PURE__*/React.createElement("p", null, "This allows you to find category gaps in your credit card setup. Just select which cards you have/want and see your rewards per category. More functionality coming soon. Feel free to contribute changes or open requests in the ", /*#__PURE__*/React.createElement("a", {
+    target: "_blank",
     href: "https://github.com/keithkade/keithkade.github.io/tree/master/stuff/credit-card-category-coverage"
-  }, "code repo"))));
+  }, "code repo"), ". Make a PR to develop and I will merge/build/deploy the updates")));
 };
 
 ReactDOM.render( /*#__PURE__*/React.createElement(App, null), document.getElementById('app'));
