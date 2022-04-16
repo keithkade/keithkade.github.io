@@ -1,0 +1,69 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #mainContent {
+  background: #ebf2ed !important;
+}
+
+#wrapper {
+  margin: 2% 4% 2% 4% !important;
+}
+
+.cards {
+  display: inline-block;
+  margin-right: 24px;
+  vertical-align: top;
+}
+
+.label {
+  margin-left: 6px;
+}
+
+.categories {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.cat-name {
+  min-width: 200px;
+  display: inline-block;
+}
+
+.percent {
+  padding: 4px;
+  min-width: 42px;
+  display: inline-block;
+}
+
+.tier-bad {
+  background-color: red;
+}
+
+.tier-meh {
+  background-color: orange;
+}
+
+.tier-ok {
+  background-color: #ffff00;
+}
+
+.tier-good {
+  background-color: #99ff33;
+}
+
+.tier-great {
+  background-color: #66ff33;
+}
+
+.tier-best {
+  background-color: #00cc00;
+}
+
+@media only screen and (max-width: 600px) {
+  #wrapper {
+    margin: 2% 1% 1% 1% !important;
+  }
+}
