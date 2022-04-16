@@ -113,4 +113,4 @@ const CARDS = [
       other: .01,
     }
   },
-];
+].sort((a,b) => a.name > b.name ? 1 : -1);
