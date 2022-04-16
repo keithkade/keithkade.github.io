@@ -3,12 +3,12 @@
 // npx babel --watch stuff/credit-card-category-coverage/src --out-dir stuff/credit-card-category-coverage/build
 
 /* TODO
-points being worth more than a cent
+display custom point values and allow editing
 style the page
 subcategories (ex: Amazon is a part of online shopping)
 show/hide categories
 special cases
- - custom cash card
+ - two category custom cards
  - rotating categories
  - wells fargo rewards tiers
 add custom card
@@ -61,10 +61,11 @@ const getBestReward = (cat, selectedCards, customSelections) => {
       return;
     }
 
+    let rewardsType = REWARDS.find(type => type.id === card.rewardsTypeId);
+    let rewardsTypeValuation = (rewardsType && rewardsType.valuation_cpp) ? rewardsType.valuation_cpp : 1;
+
     if (cat.id in card.rewards) {
-      let rewardsType = REWARDS.find(type => type.Id === card.rewardsTypeId);
-      let rewardsTypeValuation = (rewardsType && rewardsType.valuation_cpp) ? rewardsType.valuation_cpp : 1);
-      let effectiveValue = card.rewards[cat.id] * rewardsTypeValuation
+      let effectiveValue = card.rewards[cat.id] * rewardsTypeValuation;
 
       if (effectiveValue > best) {
         best = effectiveValue;
@@ -73,10 +74,12 @@ const getBestReward = (cat, selectedCards, customSelections) => {
         bestCard = { name: 'Multiple cards'}
       }
     }
-    if (card.rewards.other > best) {
-      best = card.rewards.other;
+
+    let effectiveOtherValue = card.rewards.other * rewardsTypeValuation;
+    if (effectiveOtherValue > best) {
+      best = effectiveOtherValue;
       bestCard = card;
-    } else if (card.rewards.other === best) {
+    } else if (effectiveOtherValue === best) {
       bestCard = { name: 'Multiple cards'}
     }
   })

@@ -1,12 +1,12 @@
 'use strict'; // npx babel --watch stuff/credit-card-category-coverage/src --out-dir stuff/credit-card-category-coverage/build
 
 /* TODO
-points being worth more than a cent
+display custom point values and allow editing
 style the page
 subcategories (ex: Amazon is a part of online shopping)
 show/hide categories
 special cases
- - custom cash card
+ - two category custom cards
  - rotating categories
  - wells fargo rewards tiers
 add custom card
@@ -71,6 +71,31 @@ const CATEGORIES = [{
   id: 'amazon',
   name: 'Amazon '
 }];
+const REWARDS = [{
+  id: 'chase-ultimate-rewards',
+  name: 'Chase Ultimate Rewards Points',
+  valuation_cpp: 1
+}, {
+  id: 'amex-reward-dollars',
+  name: 'American Express Rewards Dollars',
+  valuation_cpp: 1
+}, {
+  id: 'capital-one-miles',
+  name: 'Capital One Miles',
+  valuation_cpp: 1
+}, {
+  id: 'citi-thankYou-points',
+  name: 'Citi ThankYou Points',
+  valuation_cpp: 1
+}, {
+  id: 'alliant-rewards-points',
+  name: 'Alliant Rewards Points',
+  valuation_cpp: 1
+}, {
+  id: 'amazon-rewards-points',
+  name: 'Amazon Rewards Points',
+  valuation_cpp: 1
+}];
 
 const getBestReward = (cat, selectedCards, customSelections) => {
   let best = 0;
@@ -80,21 +105,28 @@ const getBestReward = (cat, selectedCards, customSelections) => {
       return;
     }
 
+    let rewardsType = REWARDS.find(type => type.id === card.rewardsTypeId);
+    let rewardsTypeValuation = rewardsType && rewardsType.valuation_cpp ? rewardsType.valuation_cpp : 1;
+
     if (cat.id in card.rewards) {
-      if (card.rewards[cat.id] > best) {
-        best = card.rewards[cat.id];
+      let effectiveValue = card.rewards[cat.id] * rewardsTypeValuation;
+
+      if (effectiveValue > best) {
+        best = effectiveValue;
         bestCard = card;
-      } else if (card.rewards[cat.id] === best) {
+      } else if (effectiveValue === best) {
         bestCard = {
           name: 'Multiple cards'
         };
       }
     }
 
-    if (card.rewards.other > best) {
-      best = card.rewards.other;
+    let effectiveOtherValue = card.rewards.other * rewardsTypeValuation;
+
+    if (effectiveOtherValue > best) {
+      best = effectiveOtherValue;
       bestCard = card;
-    } else if (card.rewards.other === best) {
+    } else if (effectiveOtherValue === best) {
       bestCard = {
         name: 'Multiple cards'
       };

@@ -2,7 +2,7 @@ const CARDS = [
   {
     name: 'Chase Freedom Unlimited',
     id: 'chase-unlimited',
-    rewardsTypeId: 'chase-ultimate-rewards'
+    rewardsTypeId: 'chase-ultimate-rewards',
     rewards: {
       travelChasePortal: .05,
       dining: .03,
@@ -14,7 +14,7 @@ const CARDS = [
   {
     name: 'Amex Blue Cash Preferred® Card',
     id: 'blue-cash-preferred',
-    rewardsTypeId: 'amex-reward-dollars'
+    rewardsTypeId: 'amex-reward-dollars',
     rewards: {
       grocery: .06,
       streaming: .06,
@@ -26,7 +26,7 @@ const CARDS = [
   {
     name: 'Capital One SavorOne',
     id: 'savor',
-    rewardsTypeId: 'capitol-one-miles
+    rewardsTypeId: 'capitol-one-miles',
     rewards: {
       dining: .03,
       entertainment: .03,
@@ -38,15 +38,15 @@ const CARDS = [
   {
     name: 'Capital One Quicksilver',
     id: 'quicksilver',
-    rewardsTypeId: 'capitol-one-miles'
+    rewardsTypeId: 'capitol-one-miles',
     rewards: {
       other: .015
     }
   },
   {
-    name: 'Flat 2% back (Citi® Double Cash, etc.)',
-    id: 'flat-2',
-    rewardsTypeId: 'citi-thankYou-points'
+    name: 'Citi® Double Cash',
+    id: 'citi-double-cash',
+    rewardsTypeId: 'citi-thankYou-points',
     rewards: {
       other: .02
     }
@@ -54,7 +54,7 @@ const CARDS = [
   {
     name: 'Alliant Visa Signature',
     id: 'alliant-signature',
-    rewardsTypeId: 'alliant-rewards-points'
+    rewardsTypeId: 'alliant-rewards-points',
     rewards: {
       other: .025
     }
@@ -62,7 +62,7 @@ const CARDS = [
   {
     name: 'Amazon Prime Rewards Visa',
     id: 'amazon-prime-card',
-    rewardsTypeId: 'amazon-rewards-points'
+    rewardsTypeId: 'amazon-rewards-points',
     rewards: {
       amazon: .05,
       dining: .02,
@@ -74,7 +74,7 @@ const CARDS = [
   {
     name: 'Amazon Rewards Visa',
     id: 'amazon-card',
-    rewardsTypeId: 'amazon-rewards-points'
+    rewardsTypeId: 'amazon-rewards-points',
     rewards: {
       amazon: .03,
       dining: .02,
@@ -97,7 +97,7 @@ const CARDS = [
   {
     name: 'Citi Custom Cash℠',
     id: 'citi-custom-cash',
-    rewardsTypeId: 'citi-thankYou-points'
+    rewardsTypeId: 'citi-thankYou-points',
     custom: true,
     rewards: {
       grocery: .05,
@@ -110,6 +110,7 @@ const CARDS = [
       homeImprovement: .05,
       fitness: .05,
       entertainment: .05,
+      other: .01,
     }
   },
 ];
