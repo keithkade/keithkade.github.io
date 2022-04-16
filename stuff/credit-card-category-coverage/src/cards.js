@@ -104,4 +104,4 @@ const CARDS = [
       entertainment: .05,
     }
   },
-];
+].sort((a,b) => a.name > b.name ? 1 : -1);
