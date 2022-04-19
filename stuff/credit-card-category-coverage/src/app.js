@@ -2,19 +2,6 @@
 
 // npx babel --watch stuff/credit-card-category-coverage/src --out-dir stuff/credit-card-category-coverage/build
 
-/* TODO
-display custom point values and allow editing
-style the page
-subcategories (ex: Amazon is a part of online shopping)
-show/hide categories
-special cases
- - two category custom cards
- - rotating categories
- - wells fargo rewards tiers
-add custom card
-spending caps
-*/
-
 // CARDS is defined in cards.js
 
 const { useState, useRef, useEffect } = React;
