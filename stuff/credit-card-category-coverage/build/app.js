@@ -91,9 +91,11 @@ const getBestReward = (cat, selectedCards, customSelections) => {
   let best = 0;
   let bestCard = {};
   CARDS.filter(c => selectedCards.has(c.id)).forEach(card => {
+    // skip custom card if category doesn't match
     if (card.custom && card.id in customSelections && customSelections[card.id] !== cat.id) {
       return;
-    }
+    } // get the rewards valuation of the category based on cents per point
+
 
     let rewardsType = REWARDS.find(type => type.id === card.rewardsTypeId);
     let rewardsTypeValuation = rewardsType && rewardsType.valuation_cpp ? rewardsType.valuation_cpp : 1;
@@ -109,7 +111,8 @@ const getBestReward = (cat, selectedCards, customSelections) => {
           name: 'Multiple cards'
         };
       }
-    }
+    } // check if "other" is the best from this card
+
 
     let effectiveOtherValue = card.rewards.other * rewardsTypeValuation;
 
@@ -121,32 +124,19 @@ const getBestReward = (cat, selectedCards, customSelections) => {
         name: 'Multiple cards'
       };
     }
-  });
+  }); // color-code the reward tier
+
   let tier = 'bad';
-
-  if (best >= .01) {
-    tier = 'meh';
-  }
-
-  if (best >= .02) {
-    tier = 'ok';
-  }
-
-  if (best >= .03) {
-    tier = 'good';
-  }
-
-  if (best >= .04) {
-    tier = 'great';
-  }
-
-  if (best >= .05) {
-    tier = 'best';
-  }
-
+  if (best >= .01) tier = 'meh';
+  if (best >= .02) tier = 'ok';
+  if (best >= .03) tier = 'good';
+  if (best >= .04) tier = 'great';
+  if (best >= .05) tier = 'best';
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("span", {
     className: `percent tier-${tier}`
-  }, `${best * 100}%`), `${bestCard.name ? ` via ${bestCard.name}` : ''}`);
+  }, `${best * 100}%`), /*#__PURE__*/React.createElement("span", {
+    className: "best-card"
+  }, `${bestCard.name ? ` via ${bestCard.name}` : ''}`));
 };
 
 const Card = ({
@@ -184,9 +174,7 @@ const Card = ({
     className: "label",
     name: "cars",
     id: "cars",
-    onChange: e => {
-      setCustomCat(e.target.value);
-    }
+    onChange: e => setCustomCat(e.target.value)
   }, validCats.map(cat => /*#__PURE__*/React.createElement("option", {
     key: `${cat.id}-${card.id}`,
     value: cat.id
@@ -197,7 +185,9 @@ const Category = ({
   cat,
   selectedCards,
   customSelections
-}) => /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+}) => /*#__PURE__*/React.createElement("div", {
+  className: "cat-row"
+}, /*#__PURE__*/React.createElement("span", {
   className: "cat-name"
 }, cat.name), getBestReward(cat, selectedCards, customSelections));
 
@@ -217,17 +207,21 @@ const App = () => {
 
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "cards"
-  }, /*#__PURE__*/React.createElement("span", null, "Cards:"), CARDS.map(card => /*#__PURE__*/React.createElement(Card, {
-    selectedCards: selectedCards,
+  }, /*#__PURE__*/React.createElement("h3", {
+    className: "column-title"
+  }, "Cards:"), CARDS.map(card => /*#__PURE__*/React.createElement(Card, {
     selectCard: selectCard,
+    unSelectCard: unSelectCard,
+    selectedCards: selectedCards,
     customSelections: customSelections,
     setCustomSelections: setCustomSelections,
-    unSelectCard: unSelectCard,
     key: card.id,
     card: card
   }))), /*#__PURE__*/React.createElement("div", {
     className: "categories"
-  }, /*#__PURE__*/React.createElement("span", null, "Categories:"), CATEGORIES.map(cat => /*#__PURE__*/React.createElement(Category, {
+  }, /*#__PURE__*/React.createElement("h3", {
+    className: "column-title"
+  }, "Categories:"), CATEGORIES.map(cat => /*#__PURE__*/React.createElement(Category, {
     selectedCards: selectedCards,
     customSelections: customSelections,
     key: cat.id,

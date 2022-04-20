@@ -45,10 +45,12 @@ const getBestReward = (cat, selectedCards, customSelections) => {
   let best = 0;
   let bestCard = {};
   CARDS.filter(c => selectedCards.has(c.id)).forEach(card => {
+    // skip custom card if category doesn't match
     if (card.custom && card.id in customSelections && customSelections[card.id] !== cat.id) {
       return;
     }
 
+    // get the rewards valuation of the category based on cents per point
     let rewardsType = REWARDS.find(type => type.id === card.rewardsTypeId);
     let rewardsTypeValuation = (rewardsType && rewardsType.valuation_cpp) ? rewardsType.valuation_cpp : 1;
 
@@ -59,10 +61,11 @@ const getBestReward = (cat, selectedCards, customSelections) => {
         best = effectiveValue;
         bestCard = card;
       } else if (effectiveValue === best) {
-        bestCard = { name: 'Multiple cards'}
+        bestCard = { name: 'Multiple cards' };
       }
     }
 
+    // check if "other" is the best from this card
     let effectiveOtherValue = card.rewards.other * rewardsTypeValuation;
     if (effectiveOtherValue > best) {
       best = effectiveOtherValue;
@@ -71,24 +74,17 @@ const getBestReward = (cat, selectedCards, customSelections) => {
       bestCard = { name: 'Multiple cards'}
     }
   })
+
+  // color-code the reward tier
   let tier = 'bad';
-  if (best >= .01) {
-    tier = 'meh';
-  }
-  if (best >= .02) {
-    tier = 'ok';
-  }
-  if (best >= .03) {
-    tier = 'good';
-  }
-  if (best >= .04) {
-    tier = 'great';
-  }
-  if (best >= .05) {
-    tier = 'best';
-  }
+  if (best >= .01) tier = 'meh';
+  if (best >= .02) tier = 'ok';
+  if (best >= .03) tier = 'good';
+  if (best >= .04) tier = 'great';
+  if (best >= .05) tier = 'best';
   return (<>
-    <span className={`percent tier-${tier}`}>{`${best * 100}%`}</span>{`${bestCard.name ? ` via ${bestCard.name}` : '' }`}
+    <span className={`percent tier-${tier}`}>{`${best * 100}%`}</span>
+    <span className='best-card'>{`${bestCard.name ? ` via ${bestCard.name}` : '' }`}</span>
   </>);
 }
 
@@ -125,9 +121,7 @@ const Card = ({ card, selectedCards, selectCard, unSelectCard, customSelections,
           className="label"
           name="cars"
           id="cars"
-          onChange={e => {
-            setCustomCat(e.target.value);
-          }}
+          onChange={e => setCustomCat(e.target.value)}
         >
           {validCats.map(cat =>
             <option key={`${cat.id}-${card.id}`} value={cat.id}>{cat.name}</option>
@@ -140,7 +134,7 @@ const Card = ({ card, selectedCards, selectCard, unSelectCard, customSelections,
 
 
 const Category = ({ cat, selectedCards, customSelections }) =>
-  <div>
+  <div className="cat-row">
     <span className="cat-name">{cat.name}</span>
     {getBestReward(cat, selectedCards, customSelections)}
   </div>
@@ -162,20 +156,20 @@ const App = () => {
   return (
     <div>
       <div className="cards">
-        <span>Cards:</span>
+        <h3 className="column-title">Cards:</h3>
         {CARDS.map(card => (
           <Card
-            selectedCards={selectedCards}
             selectCard={selectCard}
+            unSelectCard={unSelectCard}
+            selectedCards={selectedCards}
             customSelections={customSelections}
             setCustomSelections={setCustomSelections}
-            unSelectCard={unSelectCard}
             key={card.id}
             card={card}
           />))}
       </div>
       <div className="categories">
-        <span>Categories:</span>
+        <h3 className="column-title">Categories:</h3>
         {CATEGORIES.map(cat => (<Category selectedCards={selectedCards} customSelections={customSelections} key={cat.id} cat={cat} />))}
       </div>
       <br/>

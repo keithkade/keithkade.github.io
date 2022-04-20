@@ -12,6 +12,10 @@ html, body, #mainContent {
   margin: 2% 4% 2% 4% !important;
 }
 
+.column-title {
+  margin-top: 12px;
+}
+
 .cards {
   display: inline-block;
   margin-right: 24px;
@@ -25,6 +29,10 @@ html, body, #mainContent {
 .categories {
   display: inline-block;
   vertical-align: top;
+}
+
+.cat-row {
+  margin-top: 2px;
 }
 
 .cat-name {
@@ -62,8 +70,14 @@ html, body, #mainContent {
   background-color: #00cc00;
 }
 
+.best-card {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 14px;
+}
+
 @media only screen and (max-width: 600px) {
   #wrapper {
-    margin: 2% 1% 1% 1% !important;
+    margin: 2% 1% 1% 24px !important;
   }
 }
