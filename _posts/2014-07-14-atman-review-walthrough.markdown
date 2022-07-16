@@ -8,7 +8,7 @@ categories: game review
 header: 'none'
 preview_img: '/compressed/atman.png'
 ---
-The Cave of Atman, found on Daniel Johnson's blog, [Daniel Primed](http://danielprimed.com/) and playable at [hypernexus]( http://hypernexus.itch.io/the-cave-of-atman).
+The Cave of Atman, found on Daniel Johnson's blog, [Daniel Primed](https://danielprimed.com/) and playable at [hypernexus](https://hypernexus.itch.io/the-cave-of-atman).
 
 This game looks like a strategy rpg, but is a puzzler at heart. In appearance, it resembles games like Fire Emblem and was inspired by a core mechanic from Jeanne d’Arc. Each defeated enemy drops an "aura" that can be picked up to increase the power of your own units. The resulting gameplay places an emphasis on forethought, as each level can be won only by planning your units paths to that they can gather aura's optimally whilst defeating each enemy.
 

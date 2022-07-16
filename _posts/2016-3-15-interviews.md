@@ -38,7 +38,7 @@ Example: Count inversions in a list. Detect cycle in linked list.
 
 <iframe src="//giphy.com/embed/JWF7fOo3XyLgA" width="400" height="240" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
-This is a far too common programming question at the big competitive firms. Others have written longer, more in-depth [denouncements](http://www.nomachetejuggling.com/2014/06/24/the-worst-programming-interview-question/) of it than me, so I will just let them speak. In short, either the candidate has heard it before and will be able to regurgitate the answer verbatim (proving that they either studied hard for the interview or got lucky), or they have not heard it (proving nothing).
+This is a far too common programming question at the big competitive firms. Others have written longer, more in-depth [denouncements](https://www.nomachetejuggling.com/2014/06/24/the-worst-programming-interview-question/) of it than me, so I will just let them speak. In short, either the candidate has heard it before and will be able to regurgitate the answer verbatim (proving that they either studied hard for the interview or got lucky), or they have not heard it (proving nothing).
 
 ## Weird
 Example: How many ping-pong balls fit in a bus

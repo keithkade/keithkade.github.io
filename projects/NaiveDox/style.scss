@@ -15,7 +15,7 @@ $fontStack: 'Ubuntu', sans-serif;
     margin-right: auto;
 }
 
-@import url(http://fonts.googleapis.com/css?family=Ubuntu:300);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:300);
 
 html, body {
     margin: 0;
@@ -32,11 +32,11 @@ html, body {
     h1 {
         font-size: 50px;
     }
-    
+
     a {
         color: $offwhite;
     }
-    
+
     p {
         line-height: 140%;
     }
@@ -46,21 +46,21 @@ html, body {
         display: inline;
         padding: 0 0 15px 15px;
     }
-    
+
     #quest {
         float: left;
         display: inline;
         padding: 0 15px 15px 0;
         width: 300px;
     }
-    
+
     /* For Iphone */
-@media (max-width: 700px) { 
-    #dawg, #quest  { 
+@media (max-width: 700px) {
+    #dawg, #quest  {
         width: 100%;
         padding: 10px;
         float: none;
     }
 }
-    
+
 }

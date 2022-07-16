@@ -8,7 +8,7 @@
 <div id="mainContent">
     <span id="home-link"><a href="/blog/index.html"><img src="/compressed/kFavicon.png"><img/> Blog Home</a></span>
     <div id="wrapper">
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
             <header class="post-header">
                 {% if page.header != "none" %}
                     <img src="{{page.header}}" class="post-banner"/>
@@ -21,7 +21,7 @@
                     {% endif %}
                 </h1>
                 <p class="post-meta">
-                    <span itemprop="author" itemscope itemtype="http://schema.org/Person" class="metadata">
+                    <span itemprop="author" itemscope itemtype="https://schema.org/Person" class="metadata">
                         <span itemprop="name"><a href="/index.html">Kade Keith</a></span>
                     </span>
                     <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished" class="metadata">

@@ -8,14 +8,14 @@ header: '/compressed/glow-torus.png'
 preview_img: '/compressed/glow-torus.png'
 ---
 
-For a recent school project, I set out to achieve a glow effect using three js for the stars and lasers in a [space scene](/stuff/space-battle-boids). I stumbled upon a very helpful [blog post](http://stemkoski.blogspot.com/2013/07/shaders-in-threejs-glow-and-halo.html) from Lee Stemkoski detailing his approach to a glow shader. With just a minor tweak, I was able to achieve the effects shown above and below. [Interactive Demo](/stuff/three/glow/)
+For a recent school project, I set out to achieve a glow effect using three js for the stars and lasers in a [space scene](/stuff/space-battle-boids). I stumbled upon a very helpful [blog post](https://stemkoski.blogspot.com/2013/07/shaders-in-threejs-glow-and-halo.html) from Lee Stemkoski detailing his approach to a glow shader. With just a minor tweak, I was able to achieve the effects shown above and below. [Interactive Demo](/stuff/three/glow/)
 
 ![battle boids screenshot](/compressed/boid-shot.png)
 
 ## The Shader
 The glow effect works based on the idea that if you have a mesh with smooth, rounded corners the dot product of the view angle and the normal of a face will be highest at the center of the object, and lowest (approaching 0) at the edges. Using this property, we can effectively create a satisfying glow effect.
 
-For each glowing object, we need the base geometry, and then another copy of that geometry at the same position, scaled up to be slightly larger. I used a scaling factor between 1 and 1.5. If the geometry is already smooth, then we can move on, otherwise use something like a [subdivision modifier](https://github.com/mrdoob/three.js/blob/master/examples/js/modifiers/SubdivisionModifier.js) to smooth it out. In my case the sun was already a smooth sphere. For the lasers, I started with a cylinder and then smoothed it.  
+For each glowing object, we need the base geometry, and then another copy of that geometry at the same position, scaled up to be slightly larger. I used a scaling factor between 1 and 1.5. If the geometry is already smooth, then we can move on, otherwise use something like a subdivision modifier to smooth it out. In my case the sun was already a smooth sphere. For the lasers, I started with a cylinder and then smoothed it.  
 
 Then at every frame you need to update the view vector based on camera and object positions and that info to the shader.
 
@@ -36,7 +36,7 @@ void main() {
 }
 ```
 
-The fragment shader multiplies the color by the intensity you just calculated. That's all it takes for this "good-enough" glow shader. 
+The fragment shader multiplies the color by the intensity you just calculated. That's all it takes for this "good-enough" glow shader.
 
 ```
 varying float intensity;
