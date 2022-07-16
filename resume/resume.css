@@ -1,32 +1,31 @@
-/* line 9, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
 * {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+}
 
 @media screen and (max-device-width: 667px) {
-  /* line 16, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
   body {
-    -webkit-text-size-adjust: none; } }
-
-/* line 21, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
+    -webkit-text-size-adjust: none;
+  }
+}
 body {
   background: white;
   color: white;
   font-family: "Lato", "Helvetica Nueue", Helvetica, Arial, sans-serif;
   font-weight: 300;
-  font-size: 16px; }
+  font-size: 16px;
+}
 
-/* line 29, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
 h1 {
   -webkit-margin-before: 0em;
   -webkit-margin-after: 0em;
-  line-height: 100%; }
+  line-height: 100%;
+}
 
-/* line 35, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
 a {
-  color: #013d79; }
+  color: #013d79;
+}
 
-/* line 39, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
 #resume {
   margin-left: auto;
   margin-right: auto;
@@ -34,147 +33,133 @@ a {
   height: 1100px;
   position: relative;
   background: white;
-  color: #333333; }
-  /* line 49, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-  #resume header {
-    height: 96px;
-    background-color: #333333;
-    color: white; }
-    /* line 54, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-    #resume header .title {
-      float: left;
-      margin: 12px 0px 0px 30px;
-      width: 500px;
-      font-family: Baskerville, "Baskerville Old Face", "Goudy Old Style", Garamond, "Times New Roman", serif; }
-      /* line 60, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-      #resume header .title h1 {
-        font-weight: 300;
-        font-size: 44px; }
-      /* line 65, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-      #resume header .title h2 {
-        font-weight: 300;
-        font-size: 24px; }
-    /* line 71, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-    #resume header p {
-      margin: 8px 30px 0px 0px;
-      float: right;
-      text-align: right; }
-  /* line 78, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-  #resume #stripe {
-    height: 8px;
-    width: 100%;
-    position: relative;
-    bottom: 10px;
-    left: 4px; }
-    /* line 84, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-    #resume #stripe div {
-      width: 208px;
-      height: 6px;
-      display: inline-block;
-      margin: 0;
-      padding: 0; }
-    /* line 91, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-    #resume #stripe #blue {
-      background-color: #69D2E7; }
-    /* line 94, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-    #resume #stripe #green {
-      background-color: #A7DBD8; }
-    /* line 97, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-    #resume #stripe #sand {
-      background-color: #E0E4CC; }
-    /* line 100, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-    #resume #stripe #orange {
-      background-color: #ffb378; }
-  /* line 105, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-  #resume p {
-    margin: 0px 0 6px 0; }
-  /* line 109, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-  #resume h4 {
-    margin: 0px 0 3px 0; }
-  /* line 113, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-  #resume .time {
-    float: right; }
-  /* line 117, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-  #resume b {
-    font-weight: 500; }
-  /* line 123, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-  #resume dl dt {
-    width: 90px;
-    text-align: right;
-    float: left;
-    position: relative;
-    top: 10px;
-    font-size: 16px;
-    font-weight: 500; }
-  /* line 133, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-  #resume dl .clear {
-    height: 10px;
-    border: none; }
-  /* line 138, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-  #resume dl dd {
-    width: 720px;
-    float: right;
-    padding-right: 10px;
-    border-left: 1px solid #898989;
-    padding-left: 16px; }
-  /* line 149, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-  #resume #eduDiv .university {
-    float: left; }
-  /* line 153, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-  #resume #eduDiv .undergrad {
-    margin-top: 10px; }
-  /* line 157, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-  #resume #eduDiv .degree {
-    clear: both; }
-  /* line 164, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-  #resume #expDiv ul {
-    padding-left: 22px;
-    margin-bottom: 0;
-    margin-top: 0;
-    clear: both; }
-    /* line 170, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-    #resume #expDiv ul li {
-      line-height: 140%; }
-  /* line 175, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-  #resume #expDiv .company {
-    float: left;
-    margin-top: 4px;
-    margin-bottom: 0px; }
-  /* line 182, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-  #resume #expDiv .triCol h4 {
-    margin-top: 5px; }
-  /* line 185, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-  #resume #expDiv .triCol ul {
-    list-style: none;
-    padding-left: 0; }
-  /* line 191, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-  #resume #expDiv #extracurricular {
-    margin-top: 3px;
-    width: 45%;
-    float: left; }
-  /* line 196, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-  #resume #expDiv #leadership {
-    margin-top: 3px;
-    width: 54%;
-    float: left; }
-  /* line 204, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-  #resume #skillsDiv ul {
-    list-style: none;
-    padding-left: 0; }
-    /* line 208, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-    #resume #skillsDiv ul li {
-      margin-bottom: 6px; }
-  /* line 215, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-  #resume #projectDiv #projectList {
-    list-style: none;
-    line-height: 1.4;
-    padding-left: 0; }
-    /* line 219, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-    #resume #projectDiv #projectList li {
-      margin-bottom: 6px; }
-  /* line 226, /Users/kade/Desktop/kadekeith.me/resume/resume.scss */
-  #resume #honorsDiv #honorsList {
-    list-style: none;
-    padding-left: 0; }
+  color: #333333;
+}
+#resume header {
+  height: 96px;
+  background-color: #333333;
+  color: white;
+}
+#resume header .title {
+  float: left;
+  margin: 12px 0px 0px 30px;
+  width: 500px;
+  font-family: Baskerville, "Baskerville Old Face", "Goudy Old Style", Garamond, "Times New Roman", serif;
+}
+#resume header .title h1 {
+  font-weight: 300;
+  font-size: 44px;
+}
+#resume header .title h2 {
+  font-weight: 300;
+  font-size: 24px;
+}
+#resume header p {
+  margin: 8px 30px 0px 0px;
+  float: right;
+  text-align: right;
+}
+#resume #stripe {
+  height: 8px;
+  width: 100%;
+  position: relative;
+  bottom: 10px;
+  left: 4px;
+}
+#resume #stripe div {
+  width: 208px;
+  height: 6px;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+#resume #stripe #blue {
+  background-color: #69D2E7;
+}
+#resume #stripe #green {
+  background-color: #A7DBD8;
+}
+#resume #stripe #sand {
+  background-color: #E0E4CC;
+}
+#resume #stripe #orange {
+  background-color: #ffb378;
+}
+#resume h4 {
+  margin: 0px 0 3px 0;
+}
+#resume .time {
+  float: right;
+}
+#resume b {
+  font-weight: 500;
+}
+#resume dl dt {
+  width: 90px;
+  text-align: right;
+  float: left;
+  position: relative;
+  top: 12px;
+  font-size: 16px;
+  font-weight: 500;
+}
+#resume dl .clear {
+  height: 12px;
+  border: none;
+}
+#resume dl dd {
+  width: 720px;
+  float: right;
+  padding-right: 10px;
+  border-left: 1px solid #898989;
+  padding-left: 16px;
+}
+#resume #expDiv ul {
+  padding-left: 22px;
+  margin-bottom: 4px;
+  margin-top: 0;
+  clear: both;
+}
+#resume #expDiv ul li {
+  line-height: 140%;
+  margin-bottom: 1px;
+}
+#resume #expDiv .company {
+  float: left;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+#resume #expDiv .company:first-of-type {
+  margin-top: 0;
+}
+#resume #eduDiv .university {
+  float: left;
+}
+#resume #eduDiv .degree {
+  margin-bottom: 8px;
+  clear: both;
+}
+#resume #eduDiv .degree:last-of-type {
+  margin-bottom: 0;
+}
+#resume #skillsDiv ul {
+  list-style: none;
+  padding-left: 0;
+}
+#resume #skillsDiv ul li {
+  margin-bottom: 8px;
+}
+#resume #projectDiv #projectList {
+  list-style: none;
+  line-height: 1.4;
+  padding-left: 0;
+}
+#resume #projectDiv #projectList li {
+  margin-bottom: 6px;
+}
+#resume #honorsDiv #honorsList {
+  list-style: none;
+  padding-left: 0;
+}
 
 /*# sourceMappingURL=resume.css.map */

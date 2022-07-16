@@ -102,10 +102,6 @@ a {
     }
   }
 
-  p {
-    margin: 0px 0 6px 0;
-  }
-
   h4 {
     margin: 0px 0 3px 0;
   }
@@ -125,13 +121,13 @@ a {
       text-align: right;
       float: left;
       position: relative;
-      top: 10px;
+      top: 12px;
       font-size: 16px;
       font-weight: 500;
     }
 
     .clear {
-      height: 10px;
+      height: 12px;
       border: none;
     }
 
@@ -145,58 +141,42 @@ a {
 
   }
 
-  #eduDiv {
-    .university {
-      float: left;
-    }
-
-    .undergrad {
-      margin-top: 10px;
-    }
-
-    .degree {
-      clear: both;
-    }
-  }
-
   #expDiv {
-
     ul {
       padding-left: 22px;
-      margin-bottom: 0;
+      margin-bottom: 4px;
       margin-top: 0;
       clear: both;
 
       li {
         line-height: 140%;
+        margin-bottom: 1px;
       }
     }
 
     .company {
       float: left;
       margin-top: 4px;
-      margin-bottom: 0px;
-    }
+      margin-bottom: 4px;
 
-    .triCol {
-      h4 {
-        margin-top: 5px;
-      }
-      ul {
-        list-style: none;
-        padding-left: 0;
-
+      &:first-of-type {
+        margin-top: 0;
       }
     }
-    #extracurricular {
-      margin-top: 3px;
-      width: 45%;
+  }
+
+  #eduDiv {
+    .university {
       float: left;
     }
-    #leadership {
-      margin-top: 3px;
-      width: 54%;
-      float: left;
+
+    .degree {
+      margin-bottom: 8px;
+      clear: both;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
     }
   }
 
@@ -206,7 +186,7 @@ a {
       padding-left: 0;
 
       li {
-        margin-bottom: 6px;
+        margin-bottom: 8px;
       }
     }
   }
