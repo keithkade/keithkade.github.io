@@ -3,14 +3,17 @@
 // npx babel --watch stuff/felevels/src --out-dir stuff/felevels/build
 
 /* TODO
-Fix bug where dragging up and down results in the average getting off
-Get more real data (write script, find automatic source) fireemblemwiki.org https://serenesforest.net/ http://fea.fewiki.net/fea.php?character=gilliam&game=8e
-Rest of FE7
-FE6
-Game Picker
+Get more real data (write script, find automatic source) fireemblemwiki.org https://serenesforest.net/
+Rest of Fe7
+- https://serenesforest.net/blazing-sword/characters/average-stats/oswin/
+- https://serenesforest.net/blazing-sword/characters/base-stats/
+- https://serenesforest.net/blazing-sword/characters/growth-rates/
+Improved character picker
 === Release
+Game Picker
 Support for multiple promotion paths
-FE8
+FE6 - stats https://fea.fewiki.net/fea.php?game=6
+FE8 - stats http://fea.fewiki.net/fea.php?character=gilliam&game=8e
 "Custom" mode ???
 Better Styles ???
 */
@@ -77,7 +80,7 @@ const levelUpAttributes = (attributes, promoted) => attributes.map(attr => {
   const growthChance = attr.growth - automaticGrowth;
   return {
     ...attr,
-    avg: Math.min(cap, round(attr.avg + attr.growth)),
+    avg: attr.avg + attr.growth,
     current: Math.min(cap, (Math.random() < growthChance ? attr.current + 1 : attr.current) + automaticGrowth),
   }
 });
@@ -88,34 +91,45 @@ const levelDownAttributes = (attributes, promoted) => attributes.map(attr => {
   const growthChance = attr.growth - automaticGrowth;
   return {
     ...attr,
-    avg: Math.min(cap, round(attr.avg - attr.growth)),
+    avg: attr.avg - attr.growth,
     current: Math.min(cap, (Math.random() < growthChance ? attr.current - 1 : attr.current) - automaticGrowth),
   }
 });
 
-const promoteStats = (attributes) => attributes.map(attr => ({
-  ...attr,
-  avg: round(attr.avg + attr.promote),
-  current: attr.current + attr.promote,
-}));
+const promoteStats = (attributes) => attributes.map(attr => {
+  const cap = attr.cap[1];
+  return {
+    ...attr,
+    avg: attr.avg + attr.promote,
+    current: Math.min(cap, attr.current + attr.promote),
+  }
+});
 
-const unpromoteStats = (attributes) => attributes.map(attr => ({
-  ...attr,
-  avg: round(attr.avg - attr.promote),
-  current: attr.current - attr.promote,
-}));
+const unpromoteStats = (attributes) => attributes.map(attr => {
+  const cap = attr.cap[0];
+  return {
+    ...attr,
+    avg: attr.avg - attr.promote,
+    current: Math.min(attr.current - attr.promote),
+  };
+});
 
-const Attribute = ({ attr, didChange, setVal, promoted }) =>
-  <div>
-    <span className="attr__name">{attr.name}:</span>
-    <span className="attr__input">
-      <input className={`attr__input-form ${attr.current === attr.cap[promoted ? 1 : 0] ? 'at-cap' : ''}`} type="number" value={attr.current} onChange={e => setVal(parseInt(e.target.value))} />
-      <span className={`attr__arrow ${didChange ? 'changed' : ''}`}>{didChange === 'up' && <>&#8679;</>}{didChange === 'down' && <>&#8681;</>}</span>
-    </span>
-    <span className="attr__avg">{attr.avg}</span>
-    <span className="attr__growth">{attr.growth}</span>
-    <span className={`attr__cap ${attr.current === attr.cap[promoted ? 1 : 0] ? 'at-cap' : ''}`}>{attr.cap[promoted ? 1 : 0]}</span>
-  </div>
+const Attribute = ({ attr, didChange, setVal, promoted }) => {
+  const cap = attr.cap[promoted ? 1 : 0];
+  return (
+    <div>
+      <span className="attr__name">{attr.name}:</span>
+      <span className="attr__input">
+        <input className={`attr__input-form ${attr.current === cap ? 'at-cap' : ''}`} type="number" value={attr.current} onChange={e => setVal(parseInt(e.target.value))} />
+        <span className={`attr__arrow ${didChange ? 'changed' : ''}`}>{didChange === 'up' && <>&#8679;</>}{didChange === 'down' && <>&#8681;</>}</span>
+      </span>
+      <span className="attr__avg">{Math.min(cap, round(attr.avg))}</span>
+      <span className="attr__growth">{round(attr.growth * 100)}%</span>
+      <span className={`attr__cap ${attr.current === attr.cap[promoted ? 1 : 0] ? 'at-cap' : ''}`}>{attr.cap[promoted ? 1 : 0]}</span>
+    </div>
+  );
+}
+
 
 const Character = ({ character, reset }) => {
   const initialStats = character.attributes.map(attr => ({...attr, current: attr.base, avg: attr.base}));
@@ -136,26 +150,24 @@ const Character = ({ character, reset }) => {
   // level after taking account whether or not the user is promoted
   const [displayLvl, setDisplayLvl] = useState(character.startLvl);
 
-  // TODO fix the bug where rapid coming up and down gets the average off
   const handleLvlChange = (oldLvl, newLvl) => {
-    const diff = newLvl - oldLvl;
     let newStats = stats;
-    for (let i = 0; i < Math.abs(diff); i++) {
-      if (newLvl > lvl) {
-        newStats = levelUpAttributes(stats, promoted);
+    const includePromotion = oldLvl < 21 && newLvl > 20 && !promoted; // 20 -> 21 promote if not already
+    const includeDemotion = oldLvl > 20 && newLvl < 21; // 21 -> 20 demote
+    for (let i = 0; i < Math.abs(newLvl - oldLvl); i++) {
+      if (newLvl > oldLvl) {
+        newStats = levelUpAttributes(newStats, promoted);
       } else {
-        newStats = levelDownAttributes(stats, promoted);
+        newStats = levelDownAttributes(newStats, promoted);
       }
     }
+
     setLvl(newLvl);
-    // 20 -> 21 promote if not already
-    if (lvl < 21 && newLvl > 20 && !promoted) {
+    if (includePromotion) {
       setPromoted(true);
       setLvlPromotedAt(20);
       newStats = promoteStats(newStats);
-    }
-    // 21 -> 20 unpromote
-    if (lvl > 20 && newLvl < 21) {
+    } else if (includeDemotion) {
       setPromoted(false);
       newStats = unpromoteStats(newStats);
     }
@@ -215,9 +227,9 @@ const Character = ({ character, reset }) => {
       <div className="character__stats">
         <span className="attr__name"></span>
         <span className="attr__input attr__header">Current</span>
-        <span className="attr__avg attr__header">Average for level</span>
-        <span className="attr__growth attr__header">Growth rate</span>
-        <span className="attr__cap attr__header">Stat Cap</span>
+        <span className="attr__avg attr__header">Average</span>
+        <span className="attr__growth attr__header">Growth</span>
+        <span className="attr__cap attr__header">Max</span>
         {stats.map((attr, i) =>
           <Attribute
             key={attr.name}
@@ -299,6 +311,8 @@ const App = () => {
         Then you can use change the level to simulate your character's growth. As they level up, the tool simulates leveling up according to the characters growths.
         The current stats then update accordingly, with the arrow icon flashing when a stat changes. You can also see what the average for that stat would be at each level.
         By default, promotion is assumed to happen at level 20, but you can also manually promote by toggling the checkbox at whatever level you want.</p>
+        <br/>
+        <p>If you notice any issues or have an functionality requests, feel free to open an issue up here: <a href="https://github.com/keithkade/keithkade.github.io/issues">https://github.com/keithkade/keithkade.github.io/issues</a></p>
       </div>
     </div>
   );

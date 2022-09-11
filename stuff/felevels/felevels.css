@@ -178,21 +178,11 @@ html, body, #mainContent {
   font-weight: bold;
 }
 
-.attr__avg {
-  margin-left: .75rem;
-  width: 4rem;
-  display: inline-block;
-}
-
-.attr__growth {
-  margin-left: .75rem;
-  width: 3.5rem;
-  display: inline-block;
-}
-
+.attr__avg,
+.attr__growth,
 .attr__cap {
   margin-left: .75rem;
-  width: 3rem;
+  width: 5rem;
   display: inline-block;
 }
 
@@ -220,5 +210,14 @@ html, body, #mainContent {
   .character__stats,
   .character__info {
     width: 22rem;
+  }
+  .attr__avg {
+    width: 4rem;
+  }
+  .attr__growth {
+    width: 3.5rem;
+  }
+  .attr__cap {
+    width: 3rem;
   }
 }
