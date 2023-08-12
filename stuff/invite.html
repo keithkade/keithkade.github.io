@@ -1,0 +1,136 @@
+---
+layout: nonav
+title: Kade Keith | Other Stuff
+permalink: /stuff/invite
+---
+
+<article>
+  <p class="fade" id="a1"></p>
+  <p class="fade" id="a2">if you are reading this, then I fear I am running short on time</p>
+  <p class="fade" id="a3">and I must ask you a critical question</p>
+  <span class="fade" id="a4">.</span><span class="fade" id="a5">.</span><span class="fade" id="a6">.</span>
+  <p class="fade" id="a7">will you be my groomsman?</p>
+  <label class="container fade" id="a8">Yes
+    <input type="checkbox">
+    <span class="checkmark"></span>
+  </label>
+  <label class="container fade" id="a9">Also Yes
+    <input type="checkbox">
+    <span class="checkmark"></span>
+  </label>
+  <p class="fade" id="a10">(p.s. text me back since those checkboxes don't actually do anything)</p>
+
+</article>
+
+<script type="text/javascript">
+  const showElem = (id) => () => {document.getElementById(id).style.opacity = 1}
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const name = urlParams.get('x');
+  document.getElementById("a1").innerHTML = "hello " + name
+  setTimeout(showElem("a1"), 2000)
+  setTimeout(showElem("a2"), 5000)
+  setTimeout(showElem("a3"), 9000)
+  setTimeout(showElem("a4"), 11000)
+  setTimeout(showElem("a5"), 12000)
+  setTimeout(showElem("a6"), 13000)
+  setTimeout(showElem("a7"), 16000)
+  setTimeout(showElem("a8"), 19000)
+  setTimeout(showElem("a9"), 19000)
+  setTimeout(showElem("a10"), 23000)
+</script>
+
+<style media="screen" type="text/css">
+  #wrapper {
+    margin-top: 16px !important;
+  }
+
+  #mainContent {
+    background: #10361a !important;
+  }
+
+  #a1 {
+    font-size: 24px;
+  }
+
+  #a7 {
+    margin-top: 16px;
+  }
+
+  #a10 {
+    margin-top: 24px;
+    font-size: 12px;
+  }
+
+  .fade {
+    margin-top: 4px;
+    font-size: 16px;
+    opacity: 0;
+    transition: opacity .75s ease-in-out;
+    line-height: 1.2;
+    font-family: monospace;
+    color: #FFD700;
+  }
+
+  span {
+    margin-right: 4px;
+  }
+
+  /* Customize the label (the container) */
+  .container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  border: 2px solid #FFD700;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid #FFD700;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+</style>
