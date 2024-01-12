@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+{% include head.html %}
+
+<body>
+
+<div id="mainContent">
+    <span id="home-link"><a href="/blog/index.html"><img src="/compressed/kFavicon.png"><img/> Blog Home</a></span>
+    <div id="wrapper">
+        <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+            <header class="post-header">
+                {% if page.header != "none" %}
+                    <img src="{{page.header}}" class="post-banner"/>
+                {% endif %}
+                <h1 class="post-title" itemprop="name headline">
+                    {{ page.title }}
+                    {% if page.subtitle != "none" %}
+                        <br/>
+                        <span class="post-subtitle">{{ page.subtitle }}</span>
+                    {% endif %}
+                </h1>
+                <p class="post-meta">
+                    <span itemprop="author" itemscope itemtype="https://schema.org/Person" class="metadata">
+                        <span itemprop="name"><a href="/index.html">Kade Keith</a></span>
+                    </span>
+                    <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished" class="metadata">
+                        {{ page.date | date: "%b %-d, %Y" }}
+                    </time>
+                    <span id="read-time" class="metadata"></span>
+                    <br/>
+                </p>
+            </header>
+
+            <div class="post-content" itemprop="articleBody" id="main-text">
+                {{ content }}
+                <br class="clear" />
+            </div>
+        </article>
+    </div>
+</div>
+
+</body>
+
+{% include foot.html %}
+
+<link rel="stylesheet" href="{{ "/css/post.css" | prepend: site.baseurl }}">
+
+<!-- Time to read -->
+<script>
+    var wpm = 200;
+    var elem = document.getElementById('main-text');
+    var text = elem.textContent.replace(/\s+/g, ' ').split(' ').filter(function(e) { return (e.length > 1); });
+    var minutes = Math.round(text.length / wpm);
+    document.getElementById('read-time').innerHTML = minutes + ' minute read';
+</script>
+
+<script> //Showing and hiding the nav bar
+    var scrolled = false;
+    document.getElementById('mainContent').addEventListener('scroll', function(){
+        scrolled = true;
+    }, true);
+    document.addEventListener('scroll', function(){
+        scrolled = true;
+    }, true);
+
+    setInterval(function() {
+        if (scrolled){
+            onScroll();
+            scrolled = false;
+        }
+    }, 300);
+
+    var oldTop = 0;
+    function onScroll(){
+        //had to get weird for this to work on mobile
+        var newTop = document.getElementById('mainContent').scrollTop || document.body.scrollTop;
+        if (oldTop - newTop <= 0 && newTop > 30){ //30ish is navbar height
+            document.getElementById('home-link').style.top = '-32px';
+        }
+        else {
+            document.getElementById('home-link').style.top = '0';
+        }
+        oldTop = newTop;
+    }
+</script>
+
+</html>

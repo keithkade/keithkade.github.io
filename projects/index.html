@@ -1,0 +1,60 @@
+---
+layout: default
+title: Kade Keith | Projects
+permalink: /projects/
+---
+
+<style type="text/css">
+    .project {
+        display: inline-block;
+        padding: 10px;
+        margin: 5px;
+    }
+    .project img{
+        float:left;
+        width: 150px;
+        margin-top: 10px;
+    }
+    .project h2 {
+        margin-top: 0;
+    }
+    .project p {
+        margin-left: 170px;
+        margin-top: -10px;
+    }
+    .projectTitle:hover{
+        text-decoration: none;
+    }
+    @media (max-width: 560px) {
+        .project img{
+            float: none;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .project p {
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+    }
+</style>
+
+<article>
+    
+    {% for project in site.projects %}
+        <div class="project">
+            <a class="projectTitle" target="_blank" href="{{project.link}}">
+                <h2>{{project.title}}</h2>
+                <img src="{{project.img}}"/>
+            </a>
+            <p>
+                {{project.content}}
+            </p>
+
+            {% if project.has_source == true %}
+                <p><a target="_blank" href="{{project.source}}">Github Source</a></p>
+            {% endif %}
+        </div>    
+    {% endfor %}
+
+</article>

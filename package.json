@@ -1,0 +1,13 @@
+{
+  "name": "kadekeith.me",
+  "version": "1.0.0",
+  "dependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.5",
+    "@babel/plugin-proposal-optional-chaining": "^7.16.5",
+    "@babel/plugin-syntax-jsx": "^7.16.5",
+    "@babel/plugin-transform-react-jsx": "^7.16.5",
+    "grunt": "^1.1.0",
+    "grunt-contrib-imagemin": "^3.1.0"
+  }
+}

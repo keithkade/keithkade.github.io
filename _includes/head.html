@@ -1,0 +1,30 @@
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y2QXC97DW4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-Y2QXC97DW4');
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kade Keith's personal website - home of side projects and a blog">
+
+    <!-- Start social sharing meta -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@kade_keith" />
+    <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
+    <meta name="twitter:description" content="{% if page.desc %}{{ page.desc }}{% else %}Kade Keith's personal website - home of side projects and a blog{% endif %}" />
+    <meta name="twitter:image" content="{% if page.image %}{{ page.image }}{% else %}https://kadekeith.me/compressed/headCircle.png{% endif %}" />
+    <meta property="og:url" content="https://kadekeith.me/" />
+    <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
+    <meta property="og:description" content="{% if page.desc %}{{ page.desc }}{% else %}Kade Keith's personal website - home of side projects and a blog{% endif %}" />
+    <meta property="og:image" content="{% if page.image %}{{ page.image }}{% else %}https://kadekeith.me/compressed/headCircle.png{% endif %}" />
+    <!-- end social sharing meta -->
+
+
+    <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <link rel="icon" href="/compressed/kFavicon.png">
+</head>
