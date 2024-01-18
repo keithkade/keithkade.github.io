@@ -59,6 +59,10 @@ a {
   float: right;
   text-align: right;
 }
+#resume header a {
+  text-decoration: none;
+  color: white;
+}
 #resume #stripe {
   height: 8px;
   width: 100%;
