@@ -20,15 +20,60 @@ const {
   useState,
   useRef,
   useEffect
-} = React;
-
-function usePrevious(value) {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-}
+} = React; // 1 "Name,Class,Lv,HP,S/M,Skl,Spd,Lck,Def,Res,Con,Mov,Affin,Weapon ranks"
+// 2 "Eliwood,Lord,1,18,5,5,7,7,5,0,7,5,, C"
+// 3 "Lowen,Cavalier,2,23,7,5,7,3,7,0,10,7,, D, D"
+// 4 "Marcus,Paladin,1,31,15,15,11,8,10,8,11,8,, A, A,  B"
+// 5 "Rebecca,Archer,1,17,4,5,6,4,3,1,5,5,, D"
+// 6 "Dorcas,Fighter,3,30,7,7,6,3,3,0,14,5,, C"
+// 7 "Bartre,Fighter,2,29,9,5,3,4,4,0,13,5,, D"
+// 8 "Hector,Lord,1,19,7,4,5,3,8,0,13,5,, C"
+// 9 "Oswin,Knight,9,28,13,9,5,3,13,3,14,4,, B"
+// 10 "Serra,Cleric,1,17,2,5,8,6,2,5,4,5,, D"
+// 11 "Matthew,Thief,2,18,4,4,11,2,3,0,7,6,, D"
+// 12 "Guy,Myrmidon,3,21,6,11,11,5,5,0,5,5,, C"
+// 13 "Guy HM,Myrmidon,3,25,8,13,13,5,6,1"
+// 14 "Merlinus,Transporter,5,18,0,4,5,12,5,2,25,0,,–"
+// 15 "Erk,Mage,1,17,5,6,7,3,2,4,5,5,, D"
+// 16 "Priscilla,Troubadour,3,16,6,6,8,7,3,6,4,7,, C"
+// 17 "Lyn,Lord,4,18,5,10,11,5,2,0,5,5,, C"
+// 18 "Wil,Archer,4,21,6,5,6,7,5,1,6,5,, D"
+// 19 "Kent,Cavalier,5,23,8,7,8,4,6,1,9,7,, D, D"
+// 20 "Sain,Cavalier,4,22,9,5,7,5,7,0,9,7,, D, D"
+// 21 "Florina,Pegasus Knight,3,18,6,8,9,8,4,5,4,7,, D"
+// 22 "Name,Class,Lv,HP,S/M,Skl,Spd,Lck,Def,Res,Con,Mov,Affin,Weapon ranks"
+// 23 "Raven,Mercenary,5,25,8,11,13,2,5,1,8,5,, C"
+// 24 "Raven HM,Mercenary,5,29,10,13,15,2,6,2"
+// 25 "Lucius,Monk,3,18,7,6,10,2,1,6,6,5,, D"
+// 26 "Canas,Shaman,8,21,10,9,8,7,5,8,7,5,, B"
+// 27 "Dart,Pirate,8,34,12,8,8,3,6,1,10,5,, B"
+// 28 "Fiora,Pegasus Knight,7,21,8,11,13,6,6,7,5,7,, C"
+// 29 "Legault,Thief,12,26,8,11,15,10,8,3,9,6,, C"
+// 30 "Legault HM,Thief,12,29,8,13,17,10,8,4"
+// 31 "Ninian,Dancer,1,14,0,0,12,10,5,4,4,5,,–"
+// 32 "Isadora,Paladin,1,28,13,12,16,10,8,6,6,8,, A, B,  D"
+// 33 "Heath,Wyvern Rider,7,28,11,8,7,7,10,1,9,7,, B"
+// 34 "Heath HM,Wyvern Rider,7,32,13,10,9,7,11,2"
+// 35 "Rath,Nomad,9,27,9,10,11,5,8,2,7,7,, B"
+// 36 "Hawkeye,Berserker,4,50,18,14,11,13,14,10,16,6,, A"
+// 37 "Geitz,Warrior,3,40,17,12,13,10,11,3,13,6,, B, B"
+// 38 "Geitz HM,Warrior,3,44,19,13,14,10,12,4"
+// 39 "Wallace,General,1,34,16,9,8,10,19,5,15,5,, A, E"
+// 40 "Farina,Pegasus Knight,12,24,10,13,14,10,10,12,5,7,, A"
+// 41 "Pent,Sage,6,33,18,21,17,14,11,16,8,6,, A, A"
+// 42 "Louise,Sniper,4,28,12,14,17,16,9,12,6,6,, A"
+// 43 "Name,Class,Lv,HP,S/M,Skl,Spd,Lck,Def,Res,Con,Mov,Affin,Weapon ranks"
+// 44 "Karel,Swordmaster,8,31,16,23,20,15,13,12,9,6,, A"
+// 45 "Harken,Hero,8,38,21,20,17,12,15,10,11,6,, B, B"
+// 46 "Harken HM,Hero,8,42,23,22,18,12,16,11"
+// 47 "Nino,Mage,5,19,7,8,11,10,4,7,3,5,, C"
+// 48 "Jaffar,Assassin,13,34,19,25,24,10,15,11,8,6,, A"
+// 49 "Vaida,Wyvern Lord,9,43,20,19,13,11,21,6,12,8,, A, A"
+// 50 "Vaida HM,Wyvern Lord,9,47,22,21,14,11,22,7"
+// 51 "Nils,Bard,Same as Ninian,3,5,,–"
+// 52 "Karla,Swordmaster,5,29,14,21,18,16,11,12,7,6,, A"
+// 53 "Renault,Bishop,16,43,12,22,20,10,15,18,9,6,, A, A"
+// 54 "Athos,Archsage,20,40,30,24,20,25,20,28,9,6,, S S  S  S"
 
 const oswinData = {
   name: 'Oswin',
@@ -136,6 +181,15 @@ const characterData = {
   oswin: oswinData,
   lyn: lynData
 };
+
+function usePrevious(value) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
+
 const MAX_LVL = 39;
 const MIN_LVL = 1;
 
