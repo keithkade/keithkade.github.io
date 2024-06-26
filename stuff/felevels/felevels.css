@@ -8,8 +8,12 @@ html, body, #mainContent {
   background: #ebf2ed !important;
 }
 
+h1 {
+  text-align: center;
+}
+
 #wrapper {
-  margin: 1px 4% 2% 4% !important;
+  margin: 1px auto !important;
 }
 
 .character {
@@ -143,6 +147,12 @@ html, body, #mainContent {
 
 .promote-container {
   margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+}
+
+.promote-container label {
+  margin-left: 4px;
 }
 
 .attr__arrow {
@@ -186,12 +196,26 @@ html, body, #mainContent {
   display: inline-block;
 }
 
-.character_select_img {
-  border: 1px solid grey;
-  padding: .5rem;
-  margin: 1px;
-  height: 10rem;
+.character_select_btn {
+  border: none;
+  outline: 1px solid grey;
+  padding: 2px;
+  height: 110px;
+  width: 102px;
+  border-radius: 2px;
+  display: inline-block;
   cursor: pointer;
+  background-color: #ebf2ed;
+  margin: 3px;
+}
+
+.character_select_btn:hover {
+  outline: 2px solid #3163c0;
+}
+
+.character_select_btn p {
+  text-align: center;
+  font-size: 14px;
 }
 
 @media only screen and (max-width: 600px) {
