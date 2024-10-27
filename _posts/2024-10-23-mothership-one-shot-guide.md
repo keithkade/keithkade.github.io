@@ -8,7 +8,7 @@ header: '/compressed/anotherBugHunt2.png'
 preview_img: '/compressed/anotherBugHunt2.png'
 ---
 
-Mothership is a fantastic tabletop RPG. If you are wondering whether or not to play it, you should. I recently DM'ed a game for the first time (both as a Mothership warden and as a DM in general) and it was a blast. This post is intended as a guide for fellow first-time wardens who are considering running the first scenario "Distress Signals" from Another Bug Hunt as a one-shot.
+Mothership is a fantastic tabletop RPG. If you are wondering whether or not to play it, you should. I recently ran a game for the first time (both as a Mothership warden and as a DM in general) and it was a blast. This post is intended as a guide for fellow first-time wardens who are considering running the first scenario "Distress Signals" from Another Bug Hunt as a one-shot.
 
 ### Spoiler warning
 
@@ -20,7 +20,7 @@ If there is a chance that you want to experience Another Bug Hunt as a player ra
 
 First of all, some praise for both the Warden's Operations Manual and Another Bug Hunt as a module: Those two pieces of material are what convinced me could run a game after 10 years of only being a player. They contain fantastic advice that will give many folks all they need to know to run an awesome session. The art, writing, and information layout in this game make the prep work engaging. Distress Signals also has a lot going for it as a first-time warden experience: almost no NPCs to manage or role play, ample descriptions of the environment, and a linear objective.
 
-That being said, as someone who wanted to be ultra-prepared for my first-ever session, I did take some steps to simplify things even more. You might find them helpful if even after reading the materials you have some anxiety about how things are going to go.
+That being said, as someone who wanted to be ultra-prepared for my first-ever session, I did take some steps to simplify things even more. You might find them helpful if even after reading the materials you still have some anxiety or unanswered questions.
 
 ## Pre-scripted pieces
 
@@ -50,7 +50,7 @@ Next, here are the various mechanical and narrative things I tweaked.
 - Clarifying communications: Some hand-wavy science here, but something that wasn't quite clear to me from the module was what communications exactly were safe from the shriek. I didn't want players to immediately encounter the shriek when they tried to talk to each other via the short-range comms in their suits, so I changed it so that the only time that was an issue was if they tried to radio the dropship. I also clarified that the communication instruments in the command center would allow them to have written communication with the dropship (which my players figured out would be safe), as an alternative to radio.
 - I added a bit about the dropship leaving because it didn't want to get stuck in the mud to remove the temptation to go back to the ship too early.
 - If it hasn't already, turning the power back on in the base wakes the carcinid.
-- I chose to follow the rule where failed saves resulted in 1d5 stress, which was about right for a one-shot.
+- I chose to follow the rule where failed saves resulted in 1d5 stress, which was about right for a one-shot to make panic a realistic possibility.
 - I didn't know if androids should be impacted by the shriek. I think this could work either way, but for convenience, I decided that androids are partially organic and therefore susceptible.
 
 ### In game details
@@ -60,7 +60,7 @@ There were also some details that I worked out during the game. I think some of 
 - The "comms off" graffiti was put there in a hurry as a warning, not a work of art.
 - On a similar note, the comms array in the command center looks like it was smashed by a human, not a carcinid. They wanted to prevent infection.
 - One challenge was that my players had bad luck with finding ways to deal with the monster. Nobody rolled a loadout with anything particularly useful, and they immediately fled the garage once it woke up. They also didn't pick up the tumbler of hydrofluoric acid. One of them attempted to a combat check to "shoot it in the mouth" to bypass the armor, which I allowed if they 1) were directly facing the monster 2) rolled with disadvantage. This allowed them to get a wound on it and prevented it from completely overpowering them.
-- The "Escape Sequence" - Once my players successfully got power back and were trying to escape, I wanted to keep the action going by having the monster pursue. I decided to have it shriek as they were on the muddy path back to the landing zone, causing all players to need to make a sanity save. All but one failed. This led to a moral conundrum once onboard the dropship as the players knew they were infected. In a classic sci-fi moment, we ended up with just one survivor as the infected players elected to do the noble thing and jump out of the ship to avoid spreading the infection.
+- The "Escape Sequence" - Once my players successfully got power back and were trying to escape, I wanted to keep the action going by having the monster pursue. I decided to have it shriek as they were on the muddy path back to the landing zone, causing all players to need to make a sanity save. All but one failed. This led to a moral conundrum once onboard the dropship as the players knew they were infected. In a classic sci-fi moment, we ended up with just one survivor escaping as the infected players elected to do the noble thing and jump out of the ship to avoid spreading the infection.
 - When players failed their sanity save against the shriek, I described that the shriek suddenly transformed from almost-but-not-quite random static to whispers in a language you don't understand.
 
 ## Miscellaneous notes and tips
@@ -72,4 +72,4 @@ There were also some details that I worked out during the game. I think some of 
 
 ## Conclusion
 
-I can only speak to the experience at my table, but overall being a warden was both easier and more fun than I expected. During the whole session, there were only a couple of instances where my players asked a question where the answer couldn't explicitly be found in the module. Once I fully focused on explaining the world to my players, the world came into focus for me. 
+I can only speak to the experience at my table, but overall being a warden was both easier and more fun than I expected. During the whole session, there were only a couple of instances where my players asked a question where the answer couldn't explicitly be found in the module. Once I fully focused on explaining the world to my players, the world came into focus for me.
