@@ -9,7 +9,7 @@ header {
   position: absolute;
   top: 0;
   left: 0;
-  height: 40px;
+  height: 44px;
   border-bottom: 4px solid white;
 }
 header h1 {
@@ -23,10 +23,6 @@ header h1 {
 
 article {
   margin-top: 50px;
-}
-article ul {
-  margin: 0;
-  padding: 0;
 }
 article li {
   display: inline;
@@ -52,18 +48,21 @@ article li .img-wrapper img {
 }
 article li h2 {
   font-size: 20px;
-  margin: 4px 0 4px 4px;
+  margin: 4px 0 0 0;
   color: #141414;
   border: none;
+  padding-bottom: 0;
 }
 article li div {
   margin: 4px 0 4px 4px;
 }
 article li .subtitle {
-  font-size: 17px;
+  font-weight: normal;
+  font-size: 16px;
+  margin: 0;
 }
 article li .date {
-  margin-top: 6px;
+  margin-top: 4px;
   font-size: 14px;
 }
 

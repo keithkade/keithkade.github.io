@@ -8,7 +8,7 @@ permalink: /blog/
     <header>
         <h1>Kade Keith's Blog</h1>
     </header>
-    
+
     <ul class="post-list">
         {% for post in site.posts %}
             <li>
@@ -19,7 +19,7 @@ permalink: /blog/
                     <h2>{{ post.title }}</h2>
                 </a>
                 {% if post.subtitle != "none" %}
-                    <div class="subtitle">{{ post.subtitle }}</div>
+                    <h3 class="subtitle">{{ post.subtitle }}</h3>
                 {% endif %}
                 <div class="post-meta date">{{ post.date | date: "%b %-d, %Y" }}</div>
             </li>

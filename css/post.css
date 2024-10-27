@@ -85,6 +85,9 @@ header .post-meta .metadata {
   width: 100%;
   margin: 0 auto 0 auto;
 }
+.post-content li {
+  font-size: 120%;
+}
 .post-content .giphy-embed {
   margin: 0 auto 0 auto;
   display: block;
@@ -171,7 +174,7 @@ header .post-meta .metadata {
   width: auto;
   float: right;
 }
-.post-content ul {
+.post-content .pros-cons {
   padding: 0;
   background: rgba(86, 47, 106, 0.75);
   margin: -18px 0 16px 0;
@@ -181,7 +184,7 @@ header .post-meta .metadata {
   width: calc(50% - 10px);
   color: white;
 }
-.post-content ul .list-icon {
+.post-content .pros-cons .list-icon {
   border-radius: 20px;
   width: 24px;
   display: inline-block;

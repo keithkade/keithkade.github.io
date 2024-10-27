@@ -12,7 +12,7 @@ header {
     position: absolute;
     top: 0;
     left: 0;
-    height: 40px;
+    height: 44px;
     border-bottom: 4px solid white;
     h1 {
         position: absolute;
@@ -26,9 +26,8 @@ header {
 
 article {
     margin-top: 50px;
-    ul {
-        margin: 0;
-        padding: 0;
+    .post-list {
+      
     }
     li {
         display: inline;
@@ -53,18 +52,21 @@ article {
         }
         h2 {
             font-size: 20px;
-            margin: 4px 0 4px 4px;
+            margin: 4px 0 0 0;
             color: $textColor;
             border: none;
+            padding-bottom: 0;
         }
         div {
             margin: 4px 0 4px 4px;
         }
         .subtitle {
-            font-size: 17px;
+            font-weight: normal;
+            font-size: 16px;
+            margin: 0;
         }
         .date {
-            margin-top: 6px;
+            margin-top: 4px;
             font-size: 14px;
         }
     }

@@ -59,11 +59,11 @@ Finally and most impactfully, the game is too small. It's not that the size is a
 Don't get me wrong, if you loved the first game, you should play this one too (once the crashing is fixed). Perhaps more importantly, if you liked the idea of the first one but it wasn't a perfect fit, then maybe this is the change of pace you need. Subnautica Below Zero is (once the crashing is fixed) a good game. A ton of what works is still there, and it's easy to be enchanted by 4546B again.
 
 <span class="game-score"> **Score**: 3 Peepers out of 5 ![3 out of 5](/compressed/peeperRating.png)</span>
-<ul class="good-points">
+<ul class="pros-cons good-points">
     <li><span class="list-icon">&#43;</span>Storytelling</li>
     <li><span class="list-icon">&#43;</span>Overall polish</li>       
 </ul>
-<ul class="bad-points">
+<ul class="pros-cons bad-points">
     <li><span class="list-icon">-</span>Crashes</li>
     <li><span class="list-icon">-</span>Unrealized potential</li>    
 </ul>

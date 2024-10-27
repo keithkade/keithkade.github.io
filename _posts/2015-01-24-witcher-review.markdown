@@ -55,12 +55,12 @@ Beyond those two things, there were some technical glitches that popped up. Char
 Considering I haven't yet played the Witcher 2 or 3, I can't say much about how the first compares. From what I've seen, they both add polish to a game that is already very strong at it's core. The branching story and wealth of interesting sidequests offer plenty of replay value, and you can probably snag the game cheap. I'd recommend it to anyone looking for an engrossing world who is willing to put up with some minor technical and mechanical annoyances.
 
 <span class="game-score"> **Score**: 3.5 Kaedwenian Stouts out of 5 ![3.5 out of 5](/compressed/witcher.png)</span>
-<ul class="good-points">
+<ul class="pros-cons good-points">
     <li><span class="list-icon">&#43;</span>Engaging Lore and Politics</li>
     <li><span class="list-icon">&#43;</span>Difficult decisions</li>    
     <li><span class="list-icon">&#43;</span>Mature tone</li>    
 </ul>
-<ul class="bad-points">
+<ul class="pros-cons bad-points">
     <li><span class="list-icon">-</span>Weapon/inventory management</li>
     <li><span class="list-icon">-</span>Combat balance</li>    
 </ul>

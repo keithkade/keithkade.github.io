@@ -99,6 +99,9 @@ header {
         width: 100%;
         margin: 0 auto 0 auto;
     }
+    li {
+      font-size: 120%;
+    }
     .giphy-embed {
         margin: 0 auto 0 auto;
         display: block;
@@ -185,7 +188,7 @@ header {
             float: right;
         }
     }
-    ul {
+    .pros-cons {
         padding: 0;
         background: darken($clearPurple, 15%);
         margin: -18px 0 16px 0;
