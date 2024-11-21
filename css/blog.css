@@ -24,6 +24,9 @@ header h1 {
 article {
   margin-top: 50px;
 }
+article .post-list {
+  padding: 0;
+}
 article li {
   display: inline;
   float: left;
