@@ -2,7 +2,7 @@
 layout: post
 title: Running Another Bug Hunt as a One-Shot
 subtitle: A guide for first-time Mothership Wardens
-date:   2021-07-10 -0600
+date:   2024-11-01 -0600
 author: Kade Keith
 header: '/compressed/anotherBugHunt2.png'
 preview_img: '/compressed/anotherBugHunt2.png'
