@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "The Cave of Atman Walkthrough and Review"
+title:  "The Cave of Atman Review"
 subtitle:  "none"
 date:   2014-07-14 -0600
 author: Kade Keith
